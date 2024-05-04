@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rockm\\Desktop\\SU\\Spring Quarter 2024\\CPSC 5110\\bobaTEAm\\ContosoCrafts.WebSite\\ContosoCrafts.WebSite.csproj",
+      "projectUniqueName": "C:\\Users\\rockm\\Source\\Repos\\bobaTEAm\\ContosoCrafts.WebSite\\ContosoCrafts.WebSite.csproj",
       "projectName": "ContosoCrafts.WebSite",
-      "projectPath": "C:\\Users\\rockm\\Desktop\\SU\\Spring Quarter 2024\\CPSC 5110\\bobaTEAm\\ContosoCrafts.WebSite\\ContosoCrafts.WebSite.csproj",
+      "projectPath": "C:\\Users\\rockm\\Source\\Repos\\bobaTEAm\\ContosoCrafts.WebSite\\ContosoCrafts.WebSite.csproj",
       "packagesPath": "C:\\Users\\rockm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rockm\\Desktop\\SU\\Spring Quarter 2024\\CPSC 5110\\bobaTEAm\\ContosoCrafts.WebSite\\obj\\",
+      "outputPath": "C:\\Users\\rockm\\Source\\Repos\\bobaTEAm\\ContosoCrafts.WebSite\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
