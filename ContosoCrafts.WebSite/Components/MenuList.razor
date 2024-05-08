@@ -7,7 +7,10 @@
 @foreach(var item in MenuService.GetMenuItems())
 {
 	<div>
-		<p></p>
+		<p>@item.Name</p>
+		<p>@item.Description</p>
+		<p>@item.Price</p>
+		<p>@item.Category</p>
 	</div>
 }
 @code {
