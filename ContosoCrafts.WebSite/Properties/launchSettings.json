@@ -3,10 +3,10 @@
     "ContosoCrafts.WebSite": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:49303;http://localhost:49304",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:49303;http://localhost:49304"
     }
   }
 }
