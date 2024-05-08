@@ -1,0 +1,15 @@
+﻿@using ContosoCrafts.WebSite.Models
+@using ContosoCrafts.WebSite.Services
+@using Microsoft.AspNetCore.Components.Web
+@inject JsonFileMenuServices MenuService
+
+<h3>MenuList</h3>
+@foreach(var item in MenuService.GetMenuItems())
+{
+	<div>
+		<p></p>
+	</div>
+}
+@code {
+	
+}

@@ -2,9 +2,11 @@
 @using ContosoCrafts.WebSite.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
+@inject JsonFileMenuServices MenuService
 
 <div class="card-columns">
-    @foreach (var product in ProductService.GetProducts())
+
+@*     @foreach (var product in ProductService.GetProducts())
     {
         <div class="card">
             <div class="card-img" style="background-image: url('@product.Image');">
@@ -21,7 +23,7 @@
                 </small>
             </div>
         </div>
-    }
+    } *@
 </div>
 
 
@@ -76,6 +78,9 @@
 
 @code
 {
+    MenuItem? menuItem;
+
+
     Product? selectedProduct;
     string? selectedProductId;
 
