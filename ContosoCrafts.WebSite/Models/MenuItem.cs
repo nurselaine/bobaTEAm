@@ -10,7 +10,7 @@ namespace ContosoCrafts.WebSite.Models
         public string? Name { get; set; }
         public string? Description { get; set; }
 
-        [JsonPropertyName("img")]
+        [JsonPropertyName("image")]
         public string? Image { get; set; }
 
         public string? Price { get; set; }
