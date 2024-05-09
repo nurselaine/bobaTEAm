@@ -4,19 +4,35 @@
 @inject JsonFileMenuServices MenuService
 
 <h3>MenuList</h3>
-@foreach(var item in MenuService.GetMenuItems())
+@foreach(var category in MenuService.GetCategories())
 {
-	<div>
-		<p>@item.Name</p>
-		<p>@item.Description</p>
-		<p>@item.Price</p>
-		<p>@item.Category</p>
-		<img 
-			src="@item.Image"
-			alt="@item.Name"
-		/>
-	</div>
+	<div>@category.CategoryName</div>
 }
+<div class="container-fluid">
+	<div class="d-flex p-2 justify-content-around flex-wrap">
+		@foreach (var item in MenuService.GetMenuItems())
+		{
+			<div class="card" style="width: 50%" >
+				<div class="d-flex flex-row justify-content-between">
+					<div>
+						<p>@item.Name</p>
+						<p>@item.Description</p>
+						<p>@item.Price</p>
+						<p>@item.Category</p>
+					</div>
+					<div>
+						<img src="@item.Image"
+							 alt="@item.Name"
+							 class="rounded float-end" />
+					</div>
+					
+				</div>
+
+				
+			</div>
+		}
+	</div>
+</div>
 @code {
 	
 }

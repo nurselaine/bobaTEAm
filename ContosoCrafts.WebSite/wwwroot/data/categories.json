@@ -1,14 +1,32 @@
-{
-  "categories": [
-    "New & Limited Items",
-    "Paper Bag/Carrier",
-    "Just Tea",
-    "Milk Tea",
-    "Milk Cap Tea",
-    "Matcha",
-    "Fruit Tea",
-    "In The Clouds",
-    "Ice Blended",
-    "More"
-  ]
-}
+[
+  {
+    "CategoryName": "New & Limited Items"
+  },
+  {
+    "CategoryName": "Paper Bag/Carrier"
+  },
+  {
+    "CategoryName": "Just Tea"
+  },
+  {
+    "CategoryName": "Milk Tea"
+  },
+  {
+    "CategoryName": "Milk Cap Tea"
+  },
+  {
+    "CategoryName": "Matcha"
+  },
+  {
+    "CategoryName": "Fruit Tea"
+  },
+  {
+    "CategoryName": "In The Clouds"
+  },
+  {
+    "CategoryName": "Ice Blended"
+  },
+  {
+    "CategoryName": "More"
+  }
+]

@@ -1,9 +1,13 @@
-﻿using ContosoCrafts.WebSite.Services;
+﻿using ContosoCrafts.WebSite.Models;
+using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Collections;
+using System.Text.Json;
 
 namespace ContosoCrafts.WebSite
 {
@@ -51,6 +55,14 @@ namespace ContosoCrafts.WebSite
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapBlazorHub();
+
+                endpoints.MapGet("/Categories", async (content) =>
+                {
+                    var categories = app.ApplicationServices.GetService<JsonFileMenuServices>().GetCategories();
+                    var json = JsonSerializer.Serialize(categories);
+                    content.Response.ContentType = "application/json";
+                    await content.Response.WriteAsync(json);
+                });
 
                 // endpoints.MapGet("/products", (context) => 
                 // {

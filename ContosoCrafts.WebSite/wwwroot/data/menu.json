@@ -59,7 +59,7 @@
     "name": "JUST TEA Rose",
     "description": "floral rose tea",
     "price": "$4.50",
-    "image": "",
+    "image": "https://dummyimage.com/160x160/e89ce5/919191",
     "category": "Just Tea"
   },
   {
@@ -101,21 +101,21 @@
     "name": "Four Seasons Milk Tea",
     "description": "four seasons oolong tea",
     "price": "$5.00",
-    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p41_i1_w600.jpeg?width=160&optimize=medium",
+    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p127_i1_w600.jpeg?width=160&optimize=medium",
     "category": "Milk Tea"
   },
   {
     "name": "Iron Buddha Milk Tea",
     "description": "tien guan yin tea (type of oolong tea)",
     "price": "$5.00",
-    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p40_i1_w600.jpeg?width=160&optimize=medium",
+    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p37_i2_w600.jpeg?width=160&optimize=medium",
     "category": "Milk Tea"
   },
   {
     "name": "Rose Milk Tea",
     "description": "floral rose tea",
     "price": "$5.00",
-    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p87_i1_w600.jpeg?width=160&optimize=medium",
+    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p99_i2_w1080.jpeg?width=160&optimize=medium",
     "category": "Milk Tea"
   },
   {
@@ -319,7 +319,7 @@
     "name": "Grape Crush",
     "description": "fresh grapes ice blended + tea",
     "price": "$6.75",
-    "image": "",
+    "image": "https://dummyimage.com/160x160/e89ce5/919191",
     "category": "Ice Blended"
   },
   {
@@ -347,7 +347,7 @@
     "name": "Pineapple Coco Sago",
     "description": "fresh pineapples ice blended + coconut milk + sago topping",
     "price": "$7.75",
-    "image": "",
+    "image": "https://dummyimage.com/160x160/e89ce5/919191",
     "category": "Ice Blended"
   },
   {
@@ -411,7 +411,7 @@
     "name": "JUST TEA Rose",
     "description": "floral rose tea",
     "price": "$4.50",
-    "image": "",
+    "image": "https://dummyimage.com/160x160/e89ce5/919191",
     "category": "More"
   },
   {
@@ -464,7 +464,7 @@
     "category": "Sides"
   },
   {
-    "name": "Fresh Taro Pur�e on the Side",
+    "name": "Fresh Taro Puree on the Side",
     "description": "",
     "price": "$1.25",
     "category": "Sides"
@@ -500,31 +500,38 @@
     "category": "Dessert"
   },
   {
-    "name": "White OG TK Hat",
+    "name": "Black OG TK Hat",
     "description": "white original Tea King Hat",
     "price": "$25.00",
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p85_i1_w1080.jpeg?width=160&optimize=medium",
     "category": "Merchandise"
   },
   {
+    "name": "White OG TK Hat",
+    "description": "white original Tea King Hat",
+    "price": "$25.00",
+    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p84_i1_w1080.jpeg?width=160&optimize=medium",
+    "category": "Merchandise"
+  },
+  {
     "name": "TK Straw Set",
     "description": "Reusable Tea King branded black stainless steel straw set. 5PC Set. 1 PC Boba Straw 1 PC Regular Straw 1 PC Regular Curved Straw 1 PC Straw Cleaner 1 PC Straw Box/Holder",
     "price": "$12.99",
-    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p84_i1_w1080.jpeg?width=160&optimize=medium",
+    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p46_i1_w1080.jpeg?width=160&optimize=medium",
     "category": "Merchandise"
   },
   {
     "name": "TK Hoodie Sticker",
     "description": "Tea King Hoodie Sticker",
     "price": "$2.00",
-    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p46_i1_w1080.jpeg?width=160&optimize=medium",
+    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p191_i1_w1080.jpeg?width=160&optimize=medium",
     "category": "Merchandise"
   },
   {
     "name": "Tea King Keychain",
     "description": "acrylic tea king logo keychain 2\" x 2\"",
     "price": "$5.99",
-    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p191_i1_w1080.jpeg?width=160&optimize=medium",
+    "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p205_i1_w1080.jpeg?width=160&optimize=medium",
     "category": "Merchandise"
   }
 ]
