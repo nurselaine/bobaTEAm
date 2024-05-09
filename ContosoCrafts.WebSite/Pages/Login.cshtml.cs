@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContosoCrafts.WebSite.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 public class LoginModel : PageModel
 {
@@ -17,16 +19,19 @@ public class LoginModel : PageModel
 
     public void OnPost()
     {
-        if (!IsValidUser(Email, Password))
+        //PLEASE HELP
+        var users = User.LoadUser();
+        var user = users.FirstOrDefault(u => u.Username == Username);
+
+        if (user != null && user.VerifyPassword(Password))
         {
-            ErrorMessage = "Invalid login attempt. Please try again.";
+            // Logic for successful login
+            ErrorMessage = "Login successful.";
         }
         else
         {
-            // dummy variables
-            Email = string.Empty;
-            Password = string.Empty;
-            ErrorMessage = "Login successful!";
+            // Logic for failed login
+            ErrorMessage = "Invalid username or password.";
         }
     }
 

@@ -2,6 +2,9 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 
 namespace ContosoCrafts.WebSite.Models
@@ -16,9 +19,12 @@ namespace ContosoCrafts.WebSite.Models
         public string PasswordHash { get; set; }
         public string ProfilePictureUrl { get; set; }
 
+        private static string FilePath = "wwwroot/data/users.json";
+
 
         public override string ToString() => JsonSerializer.Serialize<User>(this);
 
+        
         // Method to hash the password using SHA256
         public void HashPassword(string password)
         {
@@ -56,6 +62,21 @@ namespace ContosoCrafts.WebSite.Models
                 // Compare the hashed password with the stored hash
                 return hashedPassword.Equals(PasswordHash);
             }
+        }
+
+        public static List<User> LoadUsers()
+        {
+            if (!File.Exists(FilePath))
+                return new List<User>();
+
+            string json = File.ReadAllText(FilePath);
+            return JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+        }
+
+        public static void SaveUsers(List<User> users)
+        {
+            string json = JsonSerializer.Serialize(users);
+            File.WriteAllText(FilePath, json);
         }
     }
 }
