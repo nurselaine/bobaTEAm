@@ -3,10 +3,10 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
 @inject JsonFileMenuServices MenuService
-
+@* 
 <div class="card-columns">
 
-@*     @foreach (var product in ProductService.GetProducts())
+    @foreach (var product in ProductService.GetProducts())
     {
         <div class="card">
             <div class="card-img" style="background-image: url('@product.Image');">
@@ -23,8 +23,8 @@
                 </small>
             </div>
         </div>
-    } *@
-</div>
+    }
+</div> *@
 
 
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">

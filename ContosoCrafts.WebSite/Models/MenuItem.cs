@@ -15,8 +15,9 @@ namespace ContosoCrafts.WebSite.Models
 
         public string? Price { get; set; }
         public string? Category {  get; set; }
+		public int[]? Ratings { get; set; }
 
-        public override string ToString()
+		public override string ToString()
         {
             return JsonSerializer.Serialize<MenuItem>(this);
         }

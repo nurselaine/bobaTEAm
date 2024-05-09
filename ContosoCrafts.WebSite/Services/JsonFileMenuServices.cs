@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 namespace ContosoCrafts.WebSite.Services
@@ -47,5 +48,32 @@ namespace ContosoCrafts.WebSite.Services
 				});
 		}
 
-    }
+		public void AddRating(string productId, int rating)
+		{
+			var products = GetMenuItems().ToList();
+
+			if (products.First(x => x.Name == productId).Ratings == null)
+			{
+				products.First(x => x.Name == productId).Ratings = new int[] { rating };
+			}
+			else
+			{
+				var ratings = products.First(x => x.Name == productId).Ratings.ToList();
+				ratings.Add(rating);
+				products.First(x => x.Name == productId).Ratings = ratings.ToArray();
+			}
+
+			using var outputStream = File.OpenWrite(menuFileName);
+
+			JsonSerializer.Serialize<IEnumerable<MenuItem>>(
+				new Utf8JsonWriter(outputStream, new JsonWriterOptions
+				{
+					SkipValidation = true,
+					Indented = true
+				}),
+				products
+			);
+		}
+
+	}
 }
