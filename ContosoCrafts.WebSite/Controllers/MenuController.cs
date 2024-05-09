@@ -24,6 +24,5 @@ namespace ContosoCrafts.WebSite.Controllers
 
         [HttpGet]
         public IEnumerable<MenuItem> Get() => MenuServices.GetMenuItems();
-
     }
 }

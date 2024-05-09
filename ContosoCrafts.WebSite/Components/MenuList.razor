@@ -1,7 +1,9 @@
-﻿@using ContosoCrafts.WebSite.Models
+﻿@using Microsoft.JSInterop
+@using ContosoCrafts.WebSite.Models
 @using ContosoCrafts.WebSite.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileMenuServices MenuService
+@inject IJSRuntime JSRuntime
 
 <h3>MenuList</h3>
 @foreach (var (key, value) in products)
@@ -11,89 +13,79 @@
 	<div class="d-flex p-2 flex-wrap">
 	@foreach(var item in products[key])
 	{
-		<div 
-			class="card m-2" 
-			style="width: 425px; height: 155px; padding: 20px"
-					 @onclick="(e => SelectProduct(item?.Name ?? string.Empty))"
-					 data-toggle="modal" data-target="#productModal"
-			>
-			<div class="d-flex flex-row align-items-center justify-content-between">
-				<div>
-					<figure class="text-start">
-								<p class="h5">@item.Name</p>
-						<p class="text-muted" style="font-size: 1rem">
-							@item.Description
-						</p>
-								<p class="h6">@item.Price</p>
-					</figure>
+		<div class="div-as-button" 
+					@onclick="(e) => OpenModal(item.Name ?? string.Empty)">
+			<div 
+				class="card m-2" 
+				style="width: 425px; height: 155px; padding: 20px">
+				<div class="d-flex flex-row align-items-center justify-content-between">
+					<div class="flex-grow-1">
+						<figure class="text-start">
+									<p class="h5">@item.Name</p>
+							<p class="text-muted" style="font-size: 1rem">
+								@item.Description
+							</p>
+									<p class="h6">@item.Price</p>
+						</figure>
+					</div>
+					<div>
+						<img src="@item.Image"
+							 alt="@item.Name"
+							 class="rounded float-end" 
+							 style="width: 75px; height: 75px"/>
+					</div>
 				</div>
-				<div>
-					<img src="@item.Image"
-						 alt="@item.Name"
-						 class="rounded float-end" 
-						 style="width: 90px; height: 90px"/>
-				</div>
-
 			</div>
-
-
 		</div>
 	}
 	</div>
 </div>
 }
-
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		@if (selectedProduct != null)
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog" @ref=MyElementReference>
+	<div class="modal-dialog">
+		@if(selectedProduct != null)
 		{
+			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="productTitle">@selectedProduct.Title</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+				<button type="button" class="close ml-auto" data-dismiss="modal" style="padding: 10px 15px 0px 0px">&times;</button>
 				<div class="modal-body">
-					<div class="card">
-						<div class="card-img" style="background-image: url('@selectedProduct.Image');">
+					<div class="d-flex flex-column align-items-center">
+						<div>
+
+							<img
+								src="@selectedProduct.Image"
+								alt="@selectedProduct.Description"
+								height="400px"
+								width="400px"
+							/>
 						</div>
-						<div class="card-body">
-							<p class="card-text">@selectedProduct.Description</p>
-						</div>
+						<figure class="text-start">
+							<p class="fs-4 fw-bold lh-base">@selectedProduct.Name</p>
+							<p class="fs-6 fw-light lh-base">@selectedProduct.Description</p>
+							<p class="fs-5 fw-bold lh-base">@selectedProduct.Price</p>
+						</figure>
 					</div>
 				</div>
 				<div class="modal-footer">
-					@if (voteCount == 0)
-					{
-						<span>Be the first to vote!</span>
-					}
-					else
-					{
-						<span>@voteCount @voteLabel</span>
-					}
-					@for (int i = 1; i < 6; i++)
-					{
-						var currentStar = i;
-						if (i <= currentRating)
-						{
-							<span class="fa fa-star checked" @onclick="(e => SubmitRating(currentStar))"></span>
-						}
-						else
-						{
-							<span class="fa fa-star" @onclick="(e => SubmitRating(currentStar))"></span>
-						}
-					}
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		}
 	</div>
 </div>
-
+<script>
+	window.openModal = function (productModal) {
+		var modal = new bootstrap.Modal(productModal);
+		modal.show();
+	};
+</script>
 @code {
+	ElementReference MyElementReference;
 	IEnumerable<ProductCategory> CategoryList = new List<ProductCategory>();
 	List<MenuItem> MenuItems = new List<MenuItem>();
-
+	MenuItem? selectedProduct;
+	string? selectedProductName;
 
 	Dictionary<string, List<MenuItem>> products = new Dictionary<string, List<MenuItem>>();
 
@@ -104,56 +96,27 @@
 
 		foreach(var c in CategoryList)
 		{
-			products.Add(c.CategoryName, new List<MenuItem>());
+			if(c.CategoryName != null)
+			{
+				products.Add(c.CategoryName, new List<MenuItem>());
+			}
 		}
 
 		foreach(var item in MenuItems)
 		{
-			string ItemCategory = item.Category;
-			if (products.ContainsKey(ItemCategory))
+			string? ItemCategory = item.Category;
+			if (ItemCategory != null && products.ContainsKey(ItemCategory))
 			{
 				products[ItemCategory].Add(item);
 			}
 		}
 	}
 
-	MenuItem? selectedProduct;
-	string? selectedProductId;
-
-	void SelectProduct(string productId)
+	void OpenModal(string itemName)
 	{
-		selectedProductId = productId;
-		selectedProduct = MenuItems.First(x => x.Name == productId);
-		GetCurrentRating();
-	}
-
-	int currentRating = 0;
-	int voteCount = 0;
-	string? voteLabel;
-
-	void GetCurrentRating()
-	{
-		if (selectedProduct?.Ratings == null)
-		{
-			currentRating = 0;
-			voteCount = 0;
-		}
-		else
-		{
-			voteCount = selectedProduct.Ratings.Count();
-			voteLabel = voteCount > 1 ? "Votes" : "Vote";
-			currentRating = selectedProduct.Ratings.Sum() / voteCount;
-		}
-
-		System.Console.WriteLine($"Current rating for {selectedProduct?.Name}: {currentRating}");
-	}
-
-	void SubmitRating(int rating)
-	{
-		System.Console.WriteLine($"Rating received for {selectedProduct?.Name}: {rating}");
-		if (selectedProductId == null)
-			return;
-		ProductService.AddRating(selectedProductId, rating);
-		SelectProduct(selectedProductId);
+		JSRuntime.InvokeVoidAsync("openModal", MyElementReference);
+		selectedProductName = itemName;
+		selectedProduct = MenuItems.First(x => x.Name == itemName);
+		Console.WriteLine(selectedProduct);
 	}
 }

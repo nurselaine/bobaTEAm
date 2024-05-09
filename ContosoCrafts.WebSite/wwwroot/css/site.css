@@ -1,49 +1,66 @@
-﻿.checked {
-  color: orange;
+﻿:root {
+    --font-family-main: Inter;
+}
+
+
+/* CSS reset styles
+-------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: var(--font-family-main);
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.checked {
+    color: orange;
 }
 
 .fa-star {
   cursor: pointer;
 }
-
-/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-.card-columns .card:hover .card-img {
-    opacity: 1;
-    -webkit-transform-style: preserve-3d;
-}
-
-.card-columns .card-body {
-    height: 100px;
-    font-family: 'Nunito', sans-serif;
-    background: #fbfafd;
-}
-
-.card-columns .card-img {
-  height: 330px;
-  vertical-align: bottom;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-  opacity: .8;
-}
-
-.modal .card-img {
-  height: 500px;
-  vertical-align: bottom;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-}
-
-.card-columns .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
-}
-.card-footer {
-    background: #fbfafd;
-}
-
 
 a.navbar-brand {
     white-space: normal;
@@ -79,6 +96,7 @@ a {
 -------------------------------------------------- */
 html {
   font-size: 14px;
+  font-family: var(--font-family-main);
 }
 @media (min-width: 768px) {
   html {
@@ -114,13 +132,13 @@ body {
   margin-bottom: 60px;
 }
 p {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-family-main);
 }
 h1 {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-family-main);
 }
 ul {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-family-main);
 }
 .footer {
     position: absolute;
@@ -128,7 +146,7 @@ ul {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-family-main);
 }
 /*Backgrounds*/
 .bg-navbar {
