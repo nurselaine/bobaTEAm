@@ -1,27 +1,35 @@
 ﻿@page
 @model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
 
 <h2>Login</h2>
-<p>Welcome to bobAteam! Please enter your credentials below to log in.</p>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMessage
+    </div>
+}
 
 <form method="post">
     <div class="form-group">
-        <label>Email:</label>
-        <input type="email" asp-for="Email" class="form-control" placeholder="Enter your email" />
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>Password:</label>
-        <input type="password" asp-for="Password" class="form-control" placeholder="Enter your password" />
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Log In</button>
-    <button type="button" class="btn btn-secondary" onclick="location.href='/'">Cancel</button>
+    <a class="btn btn-link" href="/Register">Register</a>
 </form>
 
-@if (Model.ErrorMessage != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @Model.ErrorMessage
-    </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
 

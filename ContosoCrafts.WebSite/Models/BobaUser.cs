@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace ContosoCrafts.WebSite.Models
 {
-	public class User
+	public class BobaUser
 	{
         public string UserId { get; set; }
         public string FirstName { get; set; }
@@ -19,10 +19,10 @@ namespace ContosoCrafts.WebSite.Models
         public string PasswordHash { get; set; }
         public string ProfilePictureUrl { get; set; }
 
-        private static string FilePath = "wwwroot/data/users.json";
+        private static string FilePath = "wwwroot/data/bobausers.json";
 
 
-        public override string ToString() => JsonSerializer.Serialize<User>(this);
+        public override string ToString() => JsonSerializer.Serialize<BobaUser>(this);
 
         
         // Method to hash the password using SHA256
@@ -64,18 +64,19 @@ namespace ContosoCrafts.WebSite.Models
             }
         }
 
-        public static List<User> LoadUsers()
+        public static List<BobaUser> LoadUsers()
         {
             if (!File.Exists(FilePath))
-                return new List<User>();
+                return new List<BobaUser>();
 
             string json = File.ReadAllText(FilePath);
-            return JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+            return JsonSerializer.Deserialize<List<BobaUser>>(json) ?? new List<BobaUser>();
         }
 
-        public static void SaveUsers(List<User> users)
+        public static void SaveUsers(List<BobaUser> users)
         {
-            string json = JsonSerializer.Serialize(users);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(users, options);
             File.WriteAllText(FilePath, json);
         }
     }

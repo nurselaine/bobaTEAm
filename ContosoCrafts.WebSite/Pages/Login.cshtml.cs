@@ -1,14 +1,18 @@
-﻿using ContosoCrafts.WebSite.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using ContosoCrafts.WebSite.Models;
 
 public class LoginModel : PageModel
 {
     [BindProperty]
-    public string Email { get; set; }
+    [Required]
+    public string Username { get; set; }
 
     [BindProperty]
+    [Required]
+    [DataType(DataType.Password)]
     public string Password { get; set; }
 
     public string ErrorMessage { get; set; }
@@ -17,27 +21,25 @@ public class LoginModel : PageModel
     {
     }
 
-    public void OnPost()
+    public IActionResult OnPost()
     {
-        //PLEASE HELP
-        var users = User.LoadUser();
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        var users = BobaUser.LoadUsers();
         var user = users.FirstOrDefault(u => u.Username == Username);
 
         if (user != null && user.VerifyPassword(Password))
         {
-            // Logic for successful login
-            ErrorMessage = "Login successful.";
+            return RedirectToPage("/Index");
         }
         else
         {
-            // Logic for failed login
             ErrorMessage = "Invalid username or password.";
+            return Page();
         }
     }
-
-    private bool IsValidUser(string email, string password)
-    {
-        // dummy validation logic
-        return !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password);
-    }
 }
+
