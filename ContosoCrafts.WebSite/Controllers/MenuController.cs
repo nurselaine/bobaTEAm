@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using static ContosoCrafts.WebSite.Controllers.ProductsController;
 
 namespace ContosoCrafts.WebSite.Controllers
 {
@@ -24,5 +25,16 @@ namespace ContosoCrafts.WebSite.Controllers
 
         [HttpGet]
         public IEnumerable<MenuItem> Get() => MenuServices.GetMenuItems();
-    }
+
+		[HttpPatch]
+		public ActionResult Patch([FromBody] RatingRequest request)
+		{
+			if (request?.ProductId == null)
+				return BadRequest();
+
+			MenuServices.AddRating(request.ProductId, request.Rating);
+
+			return Ok();
+		}
+	}
 }

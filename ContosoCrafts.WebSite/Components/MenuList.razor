@@ -4,88 +4,11 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileMenuServices MenuService
 @inject IJSRuntime JSRuntime
-
-<h3>MenuList</h3>
-@foreach (var (key, value) in products)
-{
-	<h1>@key</h1>
-<div class="container-fluid">
-	<div class="d-flex p-2 flex-wrap">
-	@foreach(var item in products[key])
-	{
-		<div class="div-as-button" 
-					@onclick="(e) => OpenModal(item.Name ?? string.Empty)">
-			<div 
-				class="card m-2" 
-				style="width: 425px; height: 155px; padding: 20px">
-				<div class="d-flex flex-row align-items-center justify-content-between">
-					<div class="flex-grow-1">
-						<figure class="text-start">
-									<p class="h5">@item.Name</p>
-							<p class="text-muted" style="font-size: 1rem">
-								@item.Description
-							</p>
-									<p class="h6">@item.Price</p>
-						</figure>
-					</div>
-					<div>
-						<img src="@item.Image"
-							 alt="@item.Name"
-							 class="rounded float-end" 
-							 style="width: 75px; height: 75px"/>
-					</div>
-				</div>
-			</div>
-		</div>
-	}
-	</div>
-</div>
-}
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog" @ref=MyElementReference>
-	<div class="modal-dialog">
-		@if(selectedProduct != null)
-		{
-			<!-- Modal content-->
-			<div class="modal-content">
-				<button type="button" class="close ml-auto" data-dismiss="modal" style="padding: 10px 15px 0px 0px">&times;</button>
-				<div class="modal-body">
-					<div class="d-flex flex-column align-items-center">
-						<div>
-
-							<img
-								src="@selectedProduct.Image"
-								alt="@selectedProduct.Description"
-								height="400px"
-								width="400px"
-							/>
-						</div>
-						<figure class="text-start">
-							<p class="fs-4 fw-bold lh-base">@selectedProduct.Name</p>
-							<p class="fs-6 fw-light lh-base">@selectedProduct.Description</p>
-							<p class="fs-5 fw-bold lh-base">@selectedProduct.Price</p>
-						</figure>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		}
-	</div>
-</div>
-<script>
-	window.openModal = function (productModal) {
-		var modal = new bootstrap.Modal(productModal);
-		modal.show();
-	};
-</script>
 @code {
 	ElementReference MyElementReference;
 	IEnumerable<ProductCategory> CategoryList = new List<ProductCategory>();
 	List<MenuItem> MenuItems = new List<MenuItem>();
-	MenuItem? selectedProduct;
-	string? selectedProductName;
+	public MenuItem? selectedProduct;
 
 	Dictionary<string, List<MenuItem>> products = new Dictionary<string, List<MenuItem>>();
 
@@ -94,15 +17,15 @@
 		CategoryList = MenuService.GetCategories();
 		MenuItems = MenuService.GetMenuItems().ToList();
 
-		foreach(var c in CategoryList)
+		foreach (var c in CategoryList)
 		{
-			if(c.CategoryName != null)
+			if (c.CategoryName != null)
 			{
 				products.Add(c.CategoryName, new List<MenuItem>());
 			}
 		}
 
-		foreach(var item in MenuItems)
+		foreach (var item in MenuItems)
 		{
 			string? ItemCategory = item.Category;
 			if (ItemCategory != null && products.ContainsKey(ItemCategory))
@@ -110,13 +33,126 @@
 				products[ItemCategory].Add(item);
 			}
 		}
+		Console.WriteLine("Initialization method HELLOOOOOOOOOOOOOOOOOOO");
 	}
 
-	void OpenModal(string itemName)
+	public void SelectProduct(string Product)
 	{
-		JSRuntime.InvokeVoidAsync("openModal", MyElementReference);
-		selectedProductName = itemName;
-		selectedProduct = MenuItems.First(x => x.Name == itemName);
+		Console.WriteLine("HELLOOO");
+		System.Diagnostics.Debug.WriteLine("Select Product method");
+		Console.WriteLine("Select Product method called");
+		Console.WriteLine(Product);
+		selectedProduct = MenuItems.First(x => x.Name == Product);
+		Console.WriteLine(selectedProduct.Name);
 		Console.WriteLine(selectedProduct);
 	}
+
+	int currentRating = 0;
+	int voteCount = 0;
+	string? voteLabel;
+
 }
+
+@foreach (var (key, value) in products)
+{
+	<h1>@key</h1>
+	<div class="container-fluid">
+		<div class="d-flex p-2 flex-wrap">
+			@foreach (var item in products[key])
+			{
+				<button data-toggle="modal" data-target="#myModal" @onclick="(e => SelectProduct(item?.Name ?? string.Empty))">
+					<div class="card m-2"
+						 style="width: 425px; height: 155px; padding: 20px">
+						<div class="d-flex flex-row align-items-center justify-content-between">
+							<div class="flex-grow-1">
+								<figure class="text-start">
+									<p class="h5">@item.Name</p>
+									<p class="text-muted" style="font-size: 1rem">
+										@item.Description
+									</p>
+									<p class="h6">@item.Price</p>
+								</figure>
+							</div>
+							<div>
+								<img src="@item.Image"
+									 alt="@item.Name"
+									 class="rounded float-end"
+									 style="width: 75px; height: 75px" />
+							</div>
+						</div>
+					</div>
+				</button>
+			}
+		</div>
+	</div>
+
+}
+
+<!-- The Modal -->
+<div class="modal" id="myModal">	
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Name</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+			@if (selectedProduct != null)
+			{			
+				<!-- Modal body -->
+					<div class="modal-body">
+						<div class="d-flex flex-column align-items-center">
+							<div style="width:80%">
+
+								<img src="@selectedProduct.Image"
+									 alt="@selectedProduct.Description"
+									 height="400px"
+									 width="400px" />
+							</div>
+							<div class="d-flex flex-column align-items-left" style="width:80%">
+								<p class="fs-4 fw-bold lh-base">@selectedProduct.Name</p>
+								<p class="fs-6 fw-light lh-base">@selectedProduct.Description</p>
+								<p class="fs-5 fw-bold lh-base">@selectedProduct.Price</p>
+							</div>
+						</div>
+					</div>
+			}
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					@if (voteCount == 0)
+					{
+						<span>Be the first to vote!</span>
+					}
+					else
+					{
+						<span>@voteCount @voteLabel</span>
+					}
+					@for (int i = 1; i < 6; i++)
+					{
+						var currentStar = i;
+						if (i <= currentRating)
+						{
+							<span class="fa fa-star checked"></span>
+						}
+						else
+						{
+							<span class="fa fa-star"></span>
+						}
+						@* 								if (i <= currentRating)
+					{
+					<span class="fa fa-star checked" @onclick="(e => SubmitRating(currentStar))"></span>
+					}
+					else
+					{
+					<span class="fa fa-star" @onclick="(e => SubmitRating(currentStar))"></span>
+					} *@
+					}
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	
+</div>

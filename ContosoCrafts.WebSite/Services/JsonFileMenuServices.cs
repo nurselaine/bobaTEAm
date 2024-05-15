@@ -51,16 +51,16 @@ namespace ContosoCrafts.WebSite.Services
 		public void AddRating(string productId, int rating)
 		{
 			var products = GetMenuItems().ToList();
+			MenuItem selectedProductRatings = products.First(x => x.Name == productId);
 
-			if (products.First(x => x.Name == productId).Ratings == null)
+			if (selectedProductRatings.Ratings == null)
 			{
-				products.First(x => x.Name == productId).Ratings = new int[] { rating };
+				selectedProductRatings.Ratings = new int[] { rating };
 			}
 			else
 			{
-				var ratings = products.First(x => x.Name == productId).Ratings.ToList();
-				ratings.Add(rating);
-				products.First(x => x.Name == productId).Ratings = ratings.ToArray();
+				selectedProductRatings.Ratings.ToList().Add(rating);
+				products.First(x => x.Name == productId).Ratings = selectedProductRatings.Ratings;
 			}
 
 			using var outputStream = File.OpenWrite(menuFileName);
