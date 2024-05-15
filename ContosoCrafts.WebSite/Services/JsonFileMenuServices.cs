@@ -1,5 +1,6 @@
 ﻿using ContosoCrafts.WebSite.Models;
 using Microsoft.AspNetCore.Hosting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,8 +60,9 @@ namespace ContosoCrafts.WebSite.Services
 			}
 			else
 			{
-				selectedProductRatings.Ratings.ToList().Add(rating);
-				products.First(x => x.Name == productId).Ratings = selectedProductRatings.Ratings;
+				var ratings = products.First(x => x.Name == productId).Ratings.ToList();
+				ratings.Add(rating);
+				products.First(x => x.Name == productId).Ratings = ratings.ToArray();
 			}
 
 			using var outputStream = File.OpenWrite(menuFileName);

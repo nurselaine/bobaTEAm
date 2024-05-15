@@ -6,7 +6,17 @@
     "Price": "$5.50",
     "Category": "New \u0026 Limited Items",
     "Ratings": [
-      3
+      3,
+      3,
+      4,
+      5,
+      4,
+      5,
+      5,
+      1,
+      5,
+      5,
+      5
     ]
   },
   {
@@ -15,7 +25,19 @@
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p205_i1_w1080.jpeg?width=160\u0026optimize=medium",
     "Price": "$5.99",
     "Category": "New \u0026 Limited Items",
-    "Ratings": null
+    "Ratings": [
+      3,
+      1,
+      1,
+      4,
+      3,
+      4,
+      3,
+      3,
+      5,
+      5,
+      1
+    ]
   },
   {
     "Name": "Paper Bag/Carrier",
@@ -23,7 +45,11 @@
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p98_i1_w658.png?width=160\u0026optimize=medium",
     "Price": "$0.10",
     "Category": "Paper Bag/Carrier",
-    "Ratings": null
+    "Ratings": [
+      2,
+      4,
+      4
+    ]
   },
   {
     "Name": "JUST TEA TK Signature Blend",
@@ -55,7 +81,9 @@
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p49_i2_w600.jpeg?width=160\u0026optimize=medium",
     "Price": "$4.25",
     "Category": "Just Tea",
-    "Ratings": null
+    "Ratings": [
+      2
+    ]
   },
   {
     "Name": "JUST TEA Four Seasons Oolong",
@@ -71,7 +99,9 @@
     "image": "https://dummyimage.com/160x160/e89ce5/919191",
     "Price": "$4.50",
     "Category": "Just Tea",
-    "Ratings": null
+    "Ratings": [
+      2
+    ]
   },
   {
     "Name": "TK Milk Tea",
@@ -79,7 +109,9 @@
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p1_i2_w600.jpeg?width=160\u0026optimize=medium",
     "Price": "$4.75",
     "Category": "Milk Tea",
-    "Ratings": null
+    "Ratings": [
+      4
+    ]
   },
   {
     "Name": "Assam Black Milk Tea",
@@ -119,7 +151,9 @@
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p127_i1_w600.jpeg?width=160\u0026optimize=medium",
     "Price": "$5.00",
     "Category": "Milk Tea",
-    "Ratings": null
+    "Ratings": [
+      5
+    ]
   },
   {
     "Name": "Iron Buddha Milk Tea",
@@ -193,7 +227,9 @@
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p78_i3_w600.jpeg?width=160\u0026optimize=medium",
     "Price": "$5.75",
     "Category": "Matcha",
-    "Ratings": null
+    "Ratings": [
+      3
+    ]
   },
   {
     "Name": "Hojicha Latte",
@@ -357,7 +393,9 @@
     "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p73_i2_w600.jpeg?width=160\u0026optimize=medium",
     "Price": "$6.75",
     "Category": "Ice Blended",
-    "Ratings": null
+    "Ratings": [
+      5
+    ]
   },
   {
     "Name": "One in a Melon",
