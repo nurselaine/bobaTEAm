@@ -54,5 +54,53 @@ namespace ContosoCrafts.WebSite.Services
                 products
             );
         }
+
+        /// Find the data record
+        /// Update the fields
+        /// Save to the data store
+        public bool UpdateData(Product data)
+        {
+            bool isValidUpdate = false;
+
+            var products = GetProducts();
+            var productData = products.FirstOrDefault(x => x.Id.Equals(data.Id));
+            if (productData == null)
+            {
+                isValidUpdate = false;
+                return isValidUpdate;
+            }
+
+            // Create a new product list without the changed object
+            var newProductList = products.Where(x => x.Id != data.Id);
+            newProductList = newProductList.Append(data);
+
+            // Store it back in Json File
+            SaveData(newProductList);
+
+            isValidUpdate = true;
+            return isValidUpdate;
+        }
+
+        /// Save All products data to storage
+        private void SaveData(IEnumerable<Product> products)
+        {
+
+            using (var outputStream = File.Create(JsonFileName))
+            {
+                JsonSerializer.Serialize<IEnumerable<Product>>(
+                    new Utf8JsonWriter(outputStream, new JsonWriterOptions
+                    {
+                        SkipValidation = true,
+                        Indented = true
+                    }),
+                    products
+                );
+            }
+        }
+
+
+
+
+
     }
 }
