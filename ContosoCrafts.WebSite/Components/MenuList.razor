@@ -5,6 +5,8 @@
 @inject JsonFileMenuServices MenuService
 @inject JsonFileOrderService OrderService
 @inject IJSRuntime JSRuntime
+
+
 @code {
 	ElementReference MyElementReference;
 	IEnumerable<ProductCategory> CategoryList = new List<ProductCategory>();
@@ -16,6 +18,12 @@
 	List<string> Sizes = new List<string> { "REGULAR (500ml)", "LARGE (700ml) (+$1.00)" };
 	List<string> IceLevel = new List<string> { "Normal Ice", "Less Ice", "No Ice", "Hot", "Extra Ice" };
 	List<string> SugarLevel = new List<string> { "0% Sweet", "25% sweet", "50% sweet", "75% sweet", "100% sweet", "125% sweet" };
+
+	Boolean NotCustomizable(MenuItem Item)
+	{
+		return Item.Category == "Merchandise" || Item.Category == "Sides" 
+		|| Item.Category == "Dessert" || Item.Category == "Paper Bag/Carrier";
+	}
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -70,9 +78,7 @@
 
 	public void SelectProduct(string Product)
 	{
-		Console.WriteLine("SELECTPRODUCT METHOD");
 		selectedProduct = MenuItems.First(x => x.Name == Product);
-		Console.WriteLine(selectedProduct);
 		GetCurrentRating();
 	}
 
@@ -99,7 +105,7 @@
 	void SubmitRating(int rating)
 	{
 		Console.WriteLine("SUBMIT RATING METHOD");
-		if (selectedProduct == null)
+		if (selectedProduct == null || selectedProduct.Category == null)
 			return;
 		System.Console.WriteLine($"Rating received for {selectedProduct?.Name}: {rating}");
 		MenuService.AddRating(selectedProduct.Name, rating);
@@ -121,16 +127,16 @@
 	// add boba user
 	private void SubmitForm()
 	{
-		Order UserOrder;
-		OrderService.ProcessOrder("BobaUser", UserOrder);
+		
 	}
 
 }
-
+@* Order UserOrder();
+		OrderService.ProcessOrder("BobaUser", UserOrder); *@
 @foreach (var (key, value) in products)
 {
-	<h1>@key</h1>
 	<div class="container-fluid">
+		<h1 class="h4 px-3">@key</h1>
 		<div class="d-flex p-2 flex-wrap">
 			@foreach (var item in products[key])
 			{
@@ -183,69 +189,84 @@
 					<h4 class="modal-title">@selectedProduct.Name</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<!-- Modal body -->
+				<!-- PRODUCT INFORMATION -->
 					<div class="modal-body">
 						<div class="d-flex flex-column align-items-center">
-							<div style="width:100%">
-								if(@selectedProduct.Image != null){
-									<img src="@selectedProduct.Image"
-												alt="@selectedProduct.Description"
-												height="100%"
-												width="100%" />
+							<div class="w-100">
+								@if(@selectedProduct.Image != null){
+									<img 
+										src="@selectedProduct.Image"
+										alt="@selectedProduct.Description"
+										class="w-100 h-100"
+									/>
 								}
 							</div>
-							<div class="d-flex flex-column align-items-left" style="width:80%">
-								<p class="fs-4 fw-bold lh-base">@selectedProduct.Name</p>
-								<p class="fs-6 fw-light lh-base">@selectedProduct.Description</p>
-								<p class="fs-5 fw-bold lh-base">@selectedProduct.Price</p>					
+							<div class="d-flex flex-column align-items-left w-100">
+								<p style="font-size: 1.5rem; font-weight: 600; line-height: 2;">@selectedProduct.Name</p>
+								<p style="font-size: 1rem; line-height: 2;">@selectedProduct.Description</p>
+								<p style="font-size: 1rem;  font-weight: 400; line-height: 2;">@selectedProduct.Price</p>
 							</div>
-							<div class="d-flex justify-content-start flex-column" style="width:80%">
-								<p class="fs-6 fw-semibold">Size</p>
-								<select class="form-select" aria-label="Default select example">
-								<option selected>Select one</option>
-									@for (int i = 0; i < @Sizes.Count; i++)
-								{
-									<option value="@i">@Sizes[i]</option>
-								}
-								</select>
-								<p class="fs-6 fw-semibold">Ice Level</p>
+						<!-- CUSTOMIZATION FORM body -->
+						@if (!@NotCustomizable(selectedProduct))
+						{
+							
+							<div class="d-flex justify-content-start flex-column w-100" >
+								<p class="h6 text-start mt-1">Size</p>
 									<select class="form-select" aria-label="Default select example">
-										<option selected>Select one</option>
-										@for (int i = 0; i < @IceLevel.Count; i++)
-										{
-											<option value="@i">@IceLevel[i]</option>
-										}
+									<option selected>Select one</option>
+										@for (int i = 0; i < @Sizes.Count; i++)
+									{
+										<option value="@i">@Sizes[i]</option>
+									}
 									</select>
-								<p class="fs-6 fw-semibold">Sugar Level</p>
-									<select class="form-select" aria-label="Default select example">
-										<option selected>Select one</option>
-										@for (int i = 0; i < @SugarLevel.Count; i++)
-										{
-										<option value="@i">@SugarLevel[i]</option>
-										}
-									</select>
-								<p class="fs-6 fw-semibold">Toppings</p>
-									@foreach (var item in @products["Sides"])
-										{
-											<div class="form-check" style="width: 80%">
-												<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-												<label class="form-check-label" for="flexCheckDefault">
-													<div class="d-flex">
-														<p class="align-self-left">@item.Name</p>
-														<p class="align-self-right">@item.Price</p>
-													</div>
-												</label>
-											</div>
-										}
-							</div>
-							<div class="d-flex justify-content-start flex-direction-column" style="width: 80%">
-								<Button class="btn btn-primary" type="button">X</Button>
-								<Button class="btn btn-primary" type="button">Add to order</Button>
+								<p class="h6 text-start mt-1">Ice Level</p>
+										<select class="form-select" aria-label="Default select example">
+											<option selected>Select one</option>
+											@for (int i = 0; i < @IceLevel.Count; i++)
+											{
+												<option value="@i">@IceLevel[i]</option>
+											}
+										</select>
+								<p class="h6 text-start mt-1">Sugar Level</p>
+										<select class="form-select" aria-label="Default select example">
+											<option selected>Select one</option>
+											@for (int i = 0; i < @SugarLevel.Count; i++)
+											{
+											<option value="@i">@SugarLevel[i]</option>
+											}
+										</select>
+								<p class="h6 text-start mt-1">Toppings</p>
+										@foreach (var item in @products["Sides"])
+											{
+												<div class="form-check">
+													<input 
+														class="form-check-input" 
+														type="checkbox" 
+														value="" 
+														id="flexCheckDefault"
+													>
+													<label 
+														class="form-check-label w-100" 
+														for="flexCheckDefault" 
+													>
+														<div class="d-flex justify-content-between w-100" >
+															<p class="align-self-left">@item.Name</p>
+															<p class="align-self-right">@item.Price</p>
+														</div>
+													</label>
+												</div>
+											}
+								</div>
+						}
+						<!-- SUBMIT BUTTON -->
+							<div class="d-flex justify-content-start flex-direction-column w-100">
+								<button class="btn btn-primary" type="button">X</button>
+								<button class="btn btn-primary" type="button" style="width: 90%">Add to order</button>
 							</div>
 						</div>
 					</div>
 
-				<!-- Modal footer -->
+				<!-- RATINGS FEATURE -->
 				<div class="modal-footer">
 				@if (voteCount == 0)
 				{
