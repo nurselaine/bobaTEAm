@@ -3,6 +3,7 @@
 @using ContosoCrafts.WebSite.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileMenuServices MenuService
+@inject JsonFileOrderService OrderService
 @inject IJSRuntime JSRuntime
 @code {
 	ElementReference MyElementReference;
@@ -11,6 +12,10 @@
 	public MenuItem? selectedProduct;
 
 	Dictionary<string, List<MenuItem>> products = new Dictionary<string, List<MenuItem>>();
+	List<MenuItem> Sides = new List<MenuItem>();
+	List<string> Sizes = new List<string> { "REGULAR (500ml)", "LARGE (700ml) (+$1.00)" };
+	List<string> IceLevel = new List<string> { "Normal Ice", "Less Ice", "No Ice", "Hot", "Extra Ice" };
+	List<string> SugarLevel = new List<string> { "0% Sweet", "25% sweet", "50% sweet", "75% sweet", "100% sweet", "125% sweet" };
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -31,9 +36,12 @@
 			if (ItemCategory != null && products.ContainsKey(ItemCategory))
 			{
 				products[ItemCategory].Add(item);
+				if(ItemCategory == "Sides")
+				{
+					Sides.Add(item);
+				}
 			}
 		}
-		Console.WriteLine("Initialization method HELLOOOOOOOOOOOOOOOOOOO");
 	}
 
 	void UpdateProducts()
@@ -106,8 +114,17 @@
 			ratings.Add(rating);
 			products[selectedProduct.Category].First(x => x.Name == selectedProduct.Name).Ratings = ratings.ToArray();
 		}
+
 		SelectProduct(selectedProduct.Name);
 	}
+
+	// add boba user
+	private void SubmitForm()
+	{
+		Order UserOrder;
+		OrderService.ProcessOrder("BobaUser", UserOrder);
+	}
+
 }
 
 @foreach (var (key, value) in products)
@@ -117,25 +134,34 @@
 		<div class="d-flex p-2 flex-wrap">
 			@foreach (var item in products[key])
 			{
-				<button data-toggle="modal" data-target="#myModal" @onclick="(e => SelectProduct(item?.Name ?? string.Empty))">
+				<button 
+					class="btn-light" 
+					data-toggle="modal" 
+					data-target="#myModal" 
+					@onclick="(e => SelectProduct(item?.Name ?? string.Empty))" 
+					style="background: none; border: none; padding: 0"
+				>
 					<div class="card m-2"
 						 style="width: 425px; height: 155px; padding: 20px">
 						<div class="d-flex flex-row align-items-center justify-content-between">
-							<div class="flex-grow-1">
-								<figure class="text-start">
-									<p class="h5">@item.Name</p>
-									<p class="text-muted" style="font-size: 1rem">
+							<div class="flex-grow-1 text-start">
+								<figure >
+									<p class="h5 text-start">@item.Name</p>
+									<p class="text-muted text-start" style="font-size: 1rem">
 										@item.Description
 									</p>
-									<p class="h6">@item.Price</p>
+									<p class="h6 text-start">@item.Price</p>
 								</figure>
 							</div>
-							<div>
-								<img src="@item.Image"
-									 alt="@item.Name"
-									 class="rounded float-end"
-									 style="width: 75px; height: 75px" />
-							</div>
+							@if (@item.Image != null)
+							{
+								<div>
+									<img src="@item.Image"
+										 alt="@item.Name"
+										 class="rounded float-end"
+										 style="width: 75px; height: 75px" />
+								</div>
+							}
 						</div>
 					</div>
 				</button>
@@ -154,23 +180,67 @@
 			{			
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">Name</h4>
+					<h4 class="modal-title">@selectedProduct.Name</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<!-- Modal body -->
 					<div class="modal-body">
 						<div class="d-flex flex-column align-items-center">
 							<div style="width:100%">
-
-								<img src="@selectedProduct.Image"
-									 alt="@selectedProduct.Description"
-									 height="100%"
-									 width="100%" />
+								if(@selectedProduct.Image != null){
+									<img src="@selectedProduct.Image"
+												alt="@selectedProduct.Description"
+												height="100%"
+												width="100%" />
+								}
 							</div>
 							<div class="d-flex flex-column align-items-left" style="width:80%">
 								<p class="fs-4 fw-bold lh-base">@selectedProduct.Name</p>
 								<p class="fs-6 fw-light lh-base">@selectedProduct.Description</p>
 								<p class="fs-5 fw-bold lh-base">@selectedProduct.Price</p>					
+							</div>
+							<div class="d-flex justify-content-start flex-column" style="width:80%">
+								<p class="fs-6 fw-semibold">Size</p>
+								<select class="form-select" aria-label="Default select example">
+								<option selected>Select one</option>
+									@for (int i = 0; i < @Sizes.Count; i++)
+								{
+									<option value="@i">@Sizes[i]</option>
+								}
+								</select>
+								<p class="fs-6 fw-semibold">Ice Level</p>
+									<select class="form-select" aria-label="Default select example">
+										<option selected>Select one</option>
+										@for (int i = 0; i < @IceLevel.Count; i++)
+										{
+											<option value="@i">@IceLevel[i]</option>
+										}
+									</select>
+								<p class="fs-6 fw-semibold">Sugar Level</p>
+									<select class="form-select" aria-label="Default select example">
+										<option selected>Select one</option>
+										@for (int i = 0; i < @SugarLevel.Count; i++)
+										{
+										<option value="@i">@SugarLevel[i]</option>
+										}
+									</select>
+								<p class="fs-6 fw-semibold">Toppings</p>
+									@foreach (var item in @products["Sides"])
+										{
+											<div class="form-check" style="width: 80%">
+												<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+												<label class="form-check-label" for="flexCheckDefault">
+													<div class="d-flex">
+														<p class="align-self-left">@item.Name</p>
+														<p class="align-self-right">@item.Price</p>
+													</div>
+												</label>
+											</div>
+										}
+							</div>
+							<div class="d-flex justify-content-start flex-direction-column" style="width: 80%">
+								<Button class="btn btn-primary" type="button">X</Button>
+								<Button class="btn btn-primary" type="button">Add to order</Button>
 							</div>
 						</div>
 					</div>
