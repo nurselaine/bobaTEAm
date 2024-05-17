@@ -1,0 +1,208 @@
+﻿@using Microsoft.JSInterop
+@using ContosoCrafts.WebSite.Models
+@using ContosoCrafts.WebSite.Services
+@using Microsoft.AspNetCore.Components.Web
+@inject JsonFileMenuServices MenuService
+@inject IJSRuntime JSRuntime
+@code {
+	ElementReference MyElementReference;
+	IEnumerable<ProductCategory> CategoryList = new List<ProductCategory>();
+	List<MenuItem> MenuItems = new List<MenuItem>();
+	public MenuItem? selectedProduct;
+
+	Dictionary<string, List<MenuItem>> products = new Dictionary<string, List<MenuItem>>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		CategoryList = MenuService.GetCategories();
+		MenuItems = MenuService.GetMenuItems().ToList();
+
+		foreach (var c in CategoryList)
+		{
+			if (c.CategoryName != null)
+			{
+				products.Add(c.CategoryName, new List<MenuItem>());
+			}
+		}
+
+		foreach (var item in MenuItems)
+		{
+			string? ItemCategory = item.Category;
+			if (ItemCategory != null && products.ContainsKey(ItemCategory))
+			{
+				products[ItemCategory].Add(item);
+			}
+		}
+		Console.WriteLine("Initialization method HELLOOOOOOOOOOOOOOOOOOO");
+	}
+
+	void UpdateProducts()
+	{
+		Console.WriteLine("Updating Products List");
+		CategoryList = MenuService.GetCategories();
+		MenuItems = MenuService.GetMenuItems().ToList();
+
+		foreach (var c in CategoryList)
+		{
+			if (c.CategoryName != null)
+			{
+				products[c.CategoryName] = new List<MenuItem>();
+			}
+		}
+
+		foreach (var item in MenuItems)
+		{
+			string? ItemCategory = item.Category;
+			if (ItemCategory != null && products.ContainsKey(ItemCategory))
+			{
+				products[ItemCategory].Add(item);
+			}
+		}
+	}
+
+	public void SelectProduct(string Product)
+	{
+		Console.WriteLine("SELECTPRODUCT METHOD");
+		selectedProduct = MenuItems.First(x => x.Name == Product);
+		Console.WriteLine(selectedProduct);
+		GetCurrentRating();
+	}
+
+	int currentRating = 0;
+	int voteCount = 0;
+	string? voteLabel;
+
+	void GetCurrentRating()
+	{
+		if (selectedProduct?.Ratings == null)
+		{
+			currentRating = 0;
+			voteCount = 0;
+		}
+		else
+		{
+			voteCount = selectedProduct.Ratings.Count();
+			voteLabel = voteCount > 1 ? "Votes" : "Vote";
+			currentRating = selectedProduct.Ratings.Sum() / voteCount;
+		}
+		Console.WriteLine($"Current rating for {selectedProduct?.Name}: {currentRating}");
+	}
+
+	void SubmitRating(int rating)
+	{
+		Console.WriteLine("SUBMIT RATING METHOD");
+		if (selectedProduct == null)
+			return;
+		System.Console.WriteLine($"Rating received for {selectedProduct?.Name}: {rating}");
+		MenuService.AddRating(selectedProduct.Name, rating);
+
+		if (selectedProduct.Ratings == null)
+		{
+			selectedProduct.Ratings = new int[] { rating };
+		}
+		else
+		{
+			var ratings = products[selectedProduct.Category].First(x => x.Name == selectedProduct.Name).Ratings.ToList();
+			ratings.Add(rating);
+			products[selectedProduct.Category].First(x => x.Name == selectedProduct.Name).Ratings = ratings.ToArray();
+		}
+		SelectProduct(selectedProduct.Name);
+	}
+}
+
+@foreach (var (key, value) in products)
+{
+	<h1>@key</h1>
+	<div class="container-fluid">
+		<div class="d-flex p-2 flex-wrap">
+			@foreach (var item in products[key])
+			{
+				<button data-toggle="modal" data-target="#myModal" @onclick="(e => SelectProduct(item?.Name ?? string.Empty))">
+					<div class="card m-2"
+						 style="width: 425px; height: 155px; padding: 20px">
+						<div class="d-flex flex-row align-items-center justify-content-between">
+							<div class="flex-grow-1">
+								<figure class="text-start">
+									<p class="h5">@item.Name</p>
+									<p class="text-muted" style="font-size: 1rem">
+										@item.Description
+									</p>
+									<p class="h6">@item.Price</p>
+								</figure>
+							</div>
+							<div>
+								<img src="@item.Image"
+									 alt="@item.Name"
+									 class="rounded float-end"
+									 style="width: 75px; height: 75px" />
+							</div>
+						</div>
+					</div>
+				</button>
+			}
+		</div>
+	</div>
+
+}
+
+<!-- The Modal -->
+<div class="modal" id="myModal">	
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+			@if (selectedProduct != null)
+			{			
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Name</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+					<div class="modal-body">
+						<div class="d-flex flex-column align-items-center">
+							<div style="width:100%">
+
+								<img src="@selectedProduct.Image"
+									 alt="@selectedProduct.Description"
+									 height="100%"
+									 width="100%" />
+							</div>
+							<div class="d-flex flex-column align-items-left" style="width:80%">
+								<p class="fs-4 fw-bold lh-base">@selectedProduct.Name</p>
+								<p class="fs-6 fw-light lh-base">@selectedProduct.Description</p>
+								<p class="fs-5 fw-bold lh-base">@selectedProduct.Price</p>					
+							</div>
+						</div>
+					</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+				@if (voteCount == 0)
+				{
+					<span>Be the first to vote!</span>
+				}
+				else
+				{
+					<span>@voteCount @voteLabel</span>
+				}
+				@for (int i = 1; i < 6; i++)
+				{
+					var currentStar = i;
+					if (i <= currentRating)
+					{
+						<span class="fa fa-star checked" @onclick="(e => SubmitRating(currentStar))"></span>
+					}
+					else
+					{
+						<span class="fa fa-star" @onclick="(e => SubmitRating(currentStar))"></span>
+					}
+				}
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			}
+
+			</div>
+		</div>
+	
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

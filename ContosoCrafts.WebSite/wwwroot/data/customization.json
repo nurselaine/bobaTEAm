@@ -1,0 +1,5 @@
+﻿{
+    "Size": [ "REGULAR (500ml)", "LARGE (700ml) (+$1.00)" ],
+    "Ice Level": [ "Normal Ice", "Less Ice", "No Ice", "Hot", "Extra Ice" ],
+    "Sugar Level": [ "0% Sweet", "25% sweet", "50% sweet", "75% sweet", "100% sweet", "125% sweet" ]
+}
