@@ -4,6 +4,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ContosoCrafts.WebSite.Models;
+using Microsoft.AspNetCore.Hosting;
+using ContosoCrafts.WebSite.Services;
+using System.Collections.Generic;
 
 public class RegisterModel : PageModel
 {
@@ -42,36 +45,43 @@ public class RegisterModel : PageModel
 
     public string ErrorMessage { get; set; }
 
-    public void OnGet()
+    private readonly BobaUserService bobaUserService;
+
+    public RegisterModel(IWebHostEnvironment webHostEnvironment)
     {
+        bobaUserService = new BobaUserService(webHostEnvironment);
     }
 
-    public IActionResult OnPost()
+    public List<BobaUser> Users { get; set; }
+
+    public void OnGet()
+    {
+        Users = bobaUserService.LoadUsers();
+    }
+
+    public IActionResult OnPost(string username, string password,
+        string firstName, string lastName, string profilePictureUrl)
     {
         if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        var users = BobaUser.LoadUsers();
-        if (users.Any(u => u.Username == Username))
-        {
-            ErrorMessage = "Username already exists.";
-            return Page();
-        }
+        var users = bobaUserService.LoadUsers();
 
         var newUser = new BobaUser
         {
             UserId = Guid.NewGuid().ToString(),
-            FirstName = FirstName,
-            LastName = LastName,
+            Username = username,
+            FirstName = firstName,
+            LastName = lastName,
             JoinedAt = DateTime.Now,
-            Username = Username,
-            ProfilePictureUrl = ProfilePictureUrl
+            ProfilePictureUrl = profilePictureUrl
         };
-        newUser.HashPassword(Password);
+        newUser.HashPassword(password);
         users.Add(newUser);
-        BobaUser.SaveUsers(users);
+
+        bobaUserService.SaveUsers(users);
 
         return RedirectToPage("/Login");
     }

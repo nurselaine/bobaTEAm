@@ -2,7 +2,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ContosoCrafts.WebSite.Models;
+using Microsoft.AspNetCore.Hosting;
+using ContosoCrafts.WebSite.Services;
 
 public class LoginModel : PageModel
 {
@@ -17,6 +18,13 @@ public class LoginModel : PageModel
 
     public string ErrorMessage { get; set; }
 
+    private readonly BobaUserService bobaUserService;
+
+    public LoginModel(IWebHostEnvironment webHostEnvironment)
+    {
+        bobaUserService = new BobaUserService(webHostEnvironment);
+    }
+
     public void OnGet()
     {
     }
@@ -28,7 +36,7 @@ public class LoginModel : PageModel
             return Page();
         }
 
-        var users = BobaUser.LoadUsers();
+        var users = bobaUserService.LoadUsers();
         var user = users.FirstOrDefault(u => u.Username == Username);
 
         if (user != null && user.VerifyPassword(Password))
