@@ -44,7 +44,7 @@ namespace ContosoCrafts.WebSite.Pages
 
             ProductService.UpdateData(Item);
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./DedicatedIndex");
         }
     }
 }
