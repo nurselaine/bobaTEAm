@@ -17,9 +17,15 @@ namespace ContosoCrafts.WebSite.Pages
 
         public Product Item;
 
-        public void OnGet(string id)
+        public IActionResult OnGet(string id)
         {
-            Item = ProductService.GetProducts().First(x => x.Id == id);
+            Item = ProductService.GetProducts().FirstOrDefault(x => x.Id.Equals(id));
+            if (Item == null)
+            {
+                this.ModelState.AddModelError("null item", "Unable to Read, Item is null and invalid");
+                return RedirectToPage("./DedicatedIndex"); 
+            }
+            return Page();
         }
     }
 }
