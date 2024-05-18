@@ -81,6 +81,25 @@ namespace ContosoCrafts.WebSite.Services
             return isValidUpdate;
         }
 
+        /// Create a new product using default values
+        /// After create the user can update to set values
+        public Product CreateData(Product data)
+        {
+
+            // Get the current set, and append the new record to it
+            var dataSet = GetProducts();
+            dataSet = dataSet.Append(data);
+
+            SaveData(dataSet);
+
+            // return the data
+            return data;
+
+        }
+
+
+
+
         /// Save All products data to storage
         private void SaveData(IEnumerable<Product> products)
         {
