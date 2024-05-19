@@ -66,7 +66,6 @@ namespace ContosoCrafts.WebSite.Services
             var productData = products.FirstOrDefault(x => x.Id.Equals(data.Id));
             if (productData == null)
             {
-                isValidUpdate = false;
                 return isValidUpdate;
             }
 
@@ -98,6 +97,26 @@ namespace ContosoCrafts.WebSite.Services
         }
 
 
+        public bool DeleteData(string productId)
+        {
+            bool isValidDelete = false;
+
+            var products = GetProducts();
+            var productData = products.FirstOrDefault(x => x.Id.Equals(productId));
+            if (productData == null)
+            {
+                return isValidDelete;
+            }
+
+            // Create a new product list without the changed object
+            var newProductList = products.Where(x => x.Id != productId);
+
+            // Store it back in Json File
+            SaveData(newProductList);
+
+            isValidDelete = true;
+            return isValidDelete;
+        }
 
 
         /// Save All products data to storage
