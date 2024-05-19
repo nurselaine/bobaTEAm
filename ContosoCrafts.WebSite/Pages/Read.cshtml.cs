@@ -22,8 +22,8 @@ namespace ContosoCrafts.WebSite.Pages
             Item = ProductService.GetProducts().FirstOrDefault(x => x.Id.Equals(id));
             if (Item == null)
             {
-                this.ModelState.AddModelError("null item", "Unable to Read, Item is null and invalid");
-                return RedirectToPage("./DedicatedIndex"); 
+                this.ModelState.AddModelError("OnGet Read", "Unable to Read, Item is null");
+                return RedirectToPage("./DedicatedIndex");
             }
             return Page();
         }
