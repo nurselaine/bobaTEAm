@@ -29,6 +29,10 @@ namespace ContosoCrafts.WebSite.Pages
         public void OnGet(string id)
         {
             Item = ProductService.GetProducts().FirstOrDefault(m => m.Id.Equals(id));
+            if (Item == null)
+            {
+                this.ModelState.AddModelError("OnGet Update", "Unable to Update, Item is null");
+            }
         }
 
         /// Post the model back to the page
