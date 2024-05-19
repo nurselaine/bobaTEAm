@@ -1,9 +1,13 @@
-﻿using ContosoCrafts.WebSite.Services;
+﻿using ContosoCrafts.WebSite.Models;
+using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Collections;
+using System.Text.Json;
 
 namespace ContosoCrafts.WebSite
 {
@@ -22,6 +26,7 @@ namespace ContosoCrafts.WebSite
             services.AddHttpClient();
             services.AddControllers();
             services.AddTransient<JsonFileProductService>();
+            services.AddTransient<JsonFileMenuServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,12 +56,13 @@ namespace ContosoCrafts.WebSite
                 endpoints.MapControllers();
                 endpoints.MapBlazorHub();
 
-                // endpoints.MapGet("/products", (context) => 
-                // {
-                //     var products = app.ApplicationServices.GetService<JsonFileProductService>().GetProducts();
-                //     var json = JsonSerializer.Serialize<IEnumerable<Product>>(products);
-                //     return context.Response.WriteAsync(json);
-                // });
+                endpoints.MapGet("/Categories", async (content) =>
+                {
+                    var categories = app.ApplicationServices.GetService<JsonFileMenuServices>().GetCategories();
+                    var json = JsonSerializer.Serialize(categories);
+                    content.Response.ContentType = "application/json";
+                    await content.Response.WriteAsync(json);
+                });
             });
         }
     }

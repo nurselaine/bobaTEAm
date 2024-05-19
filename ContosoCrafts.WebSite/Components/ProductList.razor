@@ -2,8 +2,10 @@
 @using ContosoCrafts.WebSite.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
-
+@inject JsonFileMenuServices MenuService
+@* 
 <div class="card-columns">
+
     @foreach (var product in ProductService.GetProducts())
     {
         <div class="card">
@@ -22,10 +24,10 @@
             </div>
         </div>
     }
-</div>
+</div> *@
 
 
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
+@* <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         @if (selectedProduct != null)
         {
@@ -73,9 +75,12 @@
 </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+ *@
 @code
 {
+    MenuItem? menuItem;
+
+
     Product? selectedProduct;
     string? selectedProductId;
 

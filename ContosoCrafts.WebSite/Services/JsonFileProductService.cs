@@ -16,7 +16,7 @@ namespace ContosoCrafts.WebSite.Services
 
         public IWebHostEnvironment WebHostEnvironment { get; }
 
-        private string JsonFileName => Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json");
+        public string JsonFileName => Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json");
 
         public IEnumerable<Product> GetProducts()
         {
