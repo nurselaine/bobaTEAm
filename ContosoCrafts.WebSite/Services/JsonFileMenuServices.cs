@@ -20,8 +20,6 @@ namespace ContosoCrafts.WebSite.Services
             WebHostEnvironment = webHostEnvironment;
 			menuFileName = Path.Combine(WebHostEnvironment.WebRootPath, "data", "menu.json");
 			categoryFileName = Path.Combine(WebHostEnvironment.WebRootPath, "data", "categories.json");
-
-        
 		}
 
      
