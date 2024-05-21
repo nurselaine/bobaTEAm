@@ -104,7 +104,6 @@
 
 	void SubmitRating(int rating)
 	{
-		Console.WriteLine("SUBMIT RATING METHOD");
 		if (selectedProduct == null || selectedProduct.Category == null)
 			return;
 		System.Console.WriteLine($"Rating received for {selectedProduct?.Name}: {rating}");
@@ -140,7 +139,7 @@
 		{
 			SelectedSides.Add(item);
 		}
-		Console.WriteLine(SelectedSides.ToString());
+		Console.WriteLine(SelectedSides.First());
 	}
 
 
@@ -151,24 +150,19 @@
 		// Non-customiable item
 		if (NotCustomizable(selectedProduct))
 		{
-			order = new Order(selectedProduct, null, null, null, null);
-			Console.WriteLine(selectedProduct);
-			Console.WriteLine(SelectedIceLevel);
+			order = new Order(selectedProduct, SelectedSides.ToArray(), "", "", "");
 			OrderService.ProcessOrder("elaine", order);
 		} else
 		{
 			order = new Order(selectedProduct, SelectedSides.ToArray(), SelectedSize, SelectedIceLevel, SelectedSugarLevel);
-			Console.WriteLine(selectedProduct);
-			Console.WriteLine(SelectedSize);
-			Console.WriteLine(SelectedSugarLevel);
-			Console.WriteLine(SelectedIceLevel);
 			OrderService.ProcessOrder("elaine", order);
 		}
+		Console.WriteLine(order.ToString());
+		OrderService.ProcessOrder("elaine1", order);
 	}
 
 }
-@* Order UserOrder();
-		OrderService.ProcessOrder("BobaUser", UserOrder); *@
+
 @foreach (var (key, value) in products)
 {
 	<div class="container-fluid">
@@ -243,10 +237,10 @@
 								<p style="font-size: 1rem;  font-weight: 400; line-height: 2;">@selectedProduct.Price</p>
 							</div>
 						<!-- CUSTOMIZATION FORM body -->
-						@if (!@NotCustomizable(selectedProduct))
-						{
 						<form @onsubmit="SubmitForm" class="w-100">
 
+						@if (!@NotCustomizable(selectedProduct))
+						{
 						
 							<div class="d-flex justify-content-start flex-column w-100" >
 								<p class="h6 text-start mt-1">Size</p>
@@ -254,7 +248,7 @@
 									<option selected>Select one</option>
 										@for (int i = 0; i < @Sizes.Count; i++)
 									{
-										<option value="@i">@Sizes[i]</option>
+											<option value="@Sizes[i]">@Sizes[i]</option>
 									}
 									</select>
 								<p class="h6 text-start mt-1">Ice Level</p>
@@ -262,7 +256,7 @@
 											<option selected>Select one</option>
 											@for (int i = 0; i < @IceLevel.Count; i++)
 											{
-												<option value="@i">@IceLevel[i]</option>
+											<option value="@IceLevel[i]">@IceLevel[i]</option>
 											}
 										</select>
 								<p class="h6 text-start mt-1">Sugar Level</p>
@@ -270,7 +264,7 @@
 											<option selected>Select one</option>
 											@for (int i = 0; i < @SugarLevel.Count; i++)
 											{
-											<option value="@i">@SugarLevel[i]</option>
+											<option value="@SugarLevel[i]">@SugarLevel[i]</option>
 											}
 										</select>
 								<p class="h6 text-start mt-1">Toppings</p>
@@ -295,20 +289,15 @@
 												</div>
 											}
 								</div>
+						} else 
+						{
 								<!-- SUBMIT BUTTON -->
 								<div class="d-flex justify-content-start flex-direction-column w-100 py-2">
 									<button class="btn btn-primary" type="button" data-dismiss="modal">X</button>
 									<button class="btn btn-primary" type="submit" style="width: 90%">Add to order</button>
 								</div>
-							</form>
-						} else
-						{			
-							<!-- SUBMIT BUTTON -->
-							<div class="d-flex justify-content-start flex-direction-column w-100 py-2">
-								<button class="btn btn-primary" type="button" data-dismiss="modal">X</button>
-								<button class="btn btn-primary" type="submit" style="width: 90%">Add to order</button>
-							</div>
 						}
+							</form>		
 						</div>
 					</div>
 
