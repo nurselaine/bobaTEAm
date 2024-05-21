@@ -22,7 +22,7 @@
 	Boolean NotCustomizable(MenuItem Item)
 	{
 		return Item.Category == "Merchandise" || Item.Category == "Sides" 
-		|| Item.Category == "Dessert" || Item.Category == "Paper Bag/Carrier";
+		|| Item.Category == "Dessert" || Item.Category == "Paper Bag/Carrier" || Item.Name == "Tea King Keychain";
 	}
 
 	protected override async Task OnInitializedAsync()
@@ -245,7 +245,7 @@
 						<!-- CUSTOMIZATION FORM body -->
 						@if (!@NotCustomizable(selectedProduct))
 						{
-						<form @onsubmit="SubmitForm">
+						<form @onsubmit="SubmitForm" class="w-100">
 
 						
 							<div class="d-flex justify-content-start flex-column w-100" >
