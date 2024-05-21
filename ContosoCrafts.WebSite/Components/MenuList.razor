@@ -124,10 +124,46 @@
 		SelectProduct(selectedProduct.Name);
 	}
 
+	string SelectedSize;
+	string SelectedIceLevel;
+	string SelectedSugarLevel;
+	List<MenuItem> SelectedSides = new List<MenuItem>();
+
+	private void UpdateSelectedItems(MenuItem item)
+	{
+		Console.WriteLine("Update Selected Sides");
+		if (SelectedSides.Contains(item))
+		{
+			SelectedSides.Remove(item);
+		}
+		else
+		{
+			SelectedSides.Add(item);
+		}
+		Console.WriteLine(SelectedSides.ToString());
+	}
+
+
 	// add boba user
 	private void SubmitForm()
 	{
-		
+		Order order;
+		// Non-customiable item
+		if (NotCustomizable(selectedProduct))
+		{
+			order = new Order(selectedProduct, null, null, null, null);
+			Console.WriteLine(selectedProduct);
+			Console.WriteLine(SelectedIceLevel);
+			OrderService.ProcessOrder("elaine", order);
+		} else
+		{
+			order = new Order(selectedProduct, SelectedSides.ToArray(), SelectedSize, SelectedIceLevel, SelectedSugarLevel);
+			Console.WriteLine(selectedProduct);
+			Console.WriteLine(SelectedSize);
+			Console.WriteLine(SelectedSugarLevel);
+			Console.WriteLine(SelectedIceLevel);
+			OrderService.ProcessOrder("elaine", order);
+		}
 	}
 
 }
@@ -209,10 +245,12 @@
 						<!-- CUSTOMIZATION FORM body -->
 						@if (!@NotCustomizable(selectedProduct))
 						{
-							
+						<form @onsubmit="SubmitForm">
+
+						
 							<div class="d-flex justify-content-start flex-column w-100" >
 								<p class="h6 text-start mt-1">Size</p>
-									<select class="form-select" aria-label="Default select example">
+									<select class="form-select" aria-label="select size" @bind="SelectedSize" required>
 									<option selected>Select one</option>
 										@for (int i = 0; i < @Sizes.Count; i++)
 									{
@@ -220,7 +258,7 @@
 									}
 									</select>
 								<p class="h6 text-start mt-1">Ice Level</p>
-										<select class="form-select" aria-label="Default select example">
+								<select class="form-select" aria-label="select Ice level" @bind="SelectedIceLevel" required>
 											<option selected>Select one</option>
 											@for (int i = 0; i < @IceLevel.Count; i++)
 											{
@@ -228,7 +266,7 @@
 											}
 										</select>
 								<p class="h6 text-start mt-1">Sugar Level</p>
-										<select class="form-select" aria-label="Default select example">
+								<select class="form-select" aria-label="select sugar level" @bind="SelectedSugarLevel" required>
 											<option selected>Select one</option>
 											@for (int i = 0; i < @SugarLevel.Count; i++)
 											{
@@ -242,13 +280,13 @@
 													<input 
 														class="form-check-input" 
 														type="checkbox" 
-														value="" 
-														id="flexCheckDefault"
+														value="item.Name"
+														id="@($"checkbox-{item.Name}")"
+														@onchange="(e => UpdateSelectedItems(item))"
 													>
 													<label 
-														class="form-check-label w-100" 
-														for="flexCheckDefault" 
-													>
+														class="form-check-label w-100"
+														for="@($"checkbox-{item.Name}")">
 														<div class="d-flex justify-content-between w-100" >
 															<p class="align-self-left">@item.Name</p>
 															<p class="align-self-right">@item.Price</p>
@@ -257,12 +295,20 @@
 												</div>
 											}
 								</div>
-						}
-						<!-- SUBMIT BUTTON -->
-							<div class="d-flex justify-content-start flex-direction-column w-100">
-								<button class="btn btn-primary" type="button">X</button>
-								<button class="btn btn-primary" type="button" style="width: 90%">Add to order</button>
+								<!-- SUBMIT BUTTON -->
+								<div class="d-flex justify-content-start flex-direction-column w-100 py-2">
+									<button class="btn btn-primary" type="button" data-dismiss="modal">X</button>
+									<button class="btn btn-primary" type="submit" style="width: 90%">Add to order</button>
+								</div>
+							</form>
+						} else
+						{			
+							<!-- SUBMIT BUTTON -->
+							<div class="d-flex justify-content-start flex-direction-column w-100 py-2">
+								<button class="btn btn-primary" type="button" data-dismiss="modal">X</button>
+								<button class="btn btn-primary" type="submit" style="width: 90%">Add to order</button>
 							</div>
+						}
 						</div>
 					</div>
 
