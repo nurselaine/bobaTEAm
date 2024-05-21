@@ -1,1 +1,385 @@
-[]
+[
+  {
+    "TimeStamp": "5/21/2024 3:40:40 PM",
+    "Item": {
+      "Name": "Oo-Plum",
+      "Description": "fresh plum puree shaken with oolong tea",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p117_i1_w1080.jpeg?width=160\u0026optimize=medium",
+      "Price": "$5.50",
+      "Category": "New \u0026 Limited Items",
+      "Ratings": [
+        3,
+        3,
+        4,
+        5,
+        4,
+        5,
+        5,
+        1,
+        5,
+        5,
+        5
+      ]
+    },
+    "Size": "REGULAR (500ml)",
+    "Sides": [
+      {
+        "Name": "Aloe on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.90",
+        "Category": "Sides",
+        "Ratings": null
+      },
+      {
+        "Name": "Sago on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Normal Ice",
+    "SugarLevel": "50% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:41:33 PM",
+    "Item": {
+      "Name": "Paper Bag/Carrier",
+      "Description": "City of Seattle Bag Fee",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p98_i1_w658.png?width=160\u0026optimize=medium",
+      "Price": "$0.10",
+      "Category": "Paper Bag/Carrier",
+      "Ratings": [
+        2,
+        4,
+        4
+      ]
+    },
+    "Size": null,
+    "Sides": [],
+    "IceLevel": null,
+    "SugarLevel": null,
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:44:37 PM",
+    "Item": {
+      "Name": "Matcha Latte",
+      "Description": "ceremonial grade matcha hand whisked to order",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p6_i4_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$5.25",
+      "Category": "Matcha",
+      "Ratings": null
+    },
+    "Size": "REGULAR (500ml)",
+    "Sides": [],
+    "IceLevel": "No Ice",
+    "SugarLevel": "25% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:46:19 PM",
+    "Item": {
+      "Name": "JUST TEA Four Seasons Oolong",
+      "Description": "four seasons oolong tea",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p125_i1_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$4.25",
+      "Category": "Just Tea",
+      "Ratings": null
+    },
+    "Size": "REGULAR (500ml)",
+    "Sides": [
+      {
+        "Name": "Lychee Jelly on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Less Ice",
+    "SugarLevel": "25% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:49:07 PM",
+    "Item": {
+      "Name": "JUST TEA Four Seasons Oolong",
+      "Description": "four seasons oolong tea",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p125_i1_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$4.25",
+      "Category": "Just Tea",
+      "Ratings": null
+    },
+    "Size": "LARGE (700ml) (\u002B$1.00)",
+    "Sides": [
+      {
+        "Name": "Boba on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      },
+      {
+        "Name": "Aloe on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.90",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "No Ice",
+    "SugarLevel": "25% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:50:37 PM",
+    "Item": {
+      "Name": "Black Sesame Latte",
+      "Description": "housemade black sesame syrup \u0026 milk of choice",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p198_i1_w1200.png?width=160\u0026optimize=medium",
+      "Price": "$5.50",
+      "Category": "More",
+      "Ratings": null
+    },
+    "Size": "LARGE (700ml) (\u002B$1.00)",
+    "Sides": [
+      {
+        "Name": "Boba on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Normal Ice",
+    "SugarLevel": "25% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:52:05 PM",
+    "Item": {
+      "Name": "Hibiscus Tea",
+      "Description": "roselle hibiscus tea",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p35_i2_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$4.50",
+      "Category": "More",
+      "Ratings": null
+    },
+    "Size": "LARGE (700ml) (\u002B$1.00)",
+    "Sides": [
+      {
+        "Name": "Lychee Jelly on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Less Ice",
+    "SugarLevel": "50% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:53:27 PM",
+    "Item": {
+      "Name": "Pineapple Coco Sago",
+      "Description": "fresh pineapples ice blended \u002B coconut milk \u002B sago topping",
+      "image": "https://dummyimage.com/160x160/e89ce5/919191",
+      "Price": "$7.75",
+      "Category": "Ice Blended",
+      "Ratings": null
+    },
+    "Size": "REGULAR (500ml)",
+    "Sides": [
+      {
+        "Name": "Lychee Jelly on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Less Ice",
+    "SugarLevel": "25% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:55:45 PM",
+    "Item": {
+      "Name": "White OG TK Hat",
+      "Description": "white original Tea King Hat",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p84_i1_w1080.jpeg?width=160\u0026optimize=medium",
+      "Price": "$25.00",
+      "Category": "Merchandise",
+      "Ratings": null
+    },
+    "Size": null,
+    "Sides": [],
+    "IceLevel": null,
+    "SugarLevel": null,
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 3:56:16 PM",
+    "Item": {
+      "Name": "TK Straw Set",
+      "Description": "Reusable Tea King branded black stainless steel straw set. 5PC Set. 1 PC Boba Straw 1 PC Regular Straw 1 PC Regular Curved Straw 1 PC Straw Cleaner 1 PC Straw Box/Holder",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p46_i1_w1080.jpeg?width=160\u0026optimize=medium",
+      "Price": "$12.99",
+      "Category": "Merchandise",
+      "Ratings": [
+        4
+      ]
+    },
+    "Size": null,
+    "Sides": [],
+    "IceLevel": null,
+    "SugarLevel": null,
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 4:04:37 PM",
+    "Item": {
+      "Name": "Milk Tea Pudding",
+      "Description": "silky pudding made with tk signature blend",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p34_i3_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$3.50",
+      "Category": "Dessert",
+      "Ratings": null
+    },
+    "Size": null,
+    "Sides": [],
+    "IceLevel": null,
+    "SugarLevel": null,
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 4:08:26 PM",
+    "Item": {
+      "Name": "Tea King Keychain",
+      "Description": "acrylic tea king logo keychain 2\u0022 x 2\u0022",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p205_i1_w1080.jpeg?width=160\u0026optimize=medium",
+      "Price": "$5.99",
+      "Category": "New \u0026 Limited Items",
+      "Ratings": [
+        3,
+        1,
+        1,
+        4,
+        3,
+        4,
+        3,
+        3,
+        5,
+        5,
+        1
+      ]
+    },
+    "Size": null,
+    "Sides": [],
+    "IceLevel": null,
+    "SugarLevel": null,
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 4:09:48 PM",
+    "Item": {
+      "Name": "TK Milk Tea",
+      "Description": "shaken with our signature TK blend",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p1_i2_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$4.75",
+      "Category": "Milk Tea",
+      "Ratings": [
+        4
+      ]
+    },
+    "Size": "REGULAR (500ml)",
+    "Sides": [
+      {
+        "Name": "Lychee Jelly on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Less Ice",
+    "SugarLevel": "25% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 4:12:36 PM",
+    "Item": {
+      "Name": "Fresh Strawberry Milk",
+      "Description": "fresh strawberries \u002B whole milk",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p82_i2_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$5.50",
+      "Category": "More",
+      "Ratings": null
+    },
+    "Size": "REGULAR (500ml)",
+    "Sides": [],
+    "IceLevel": "Normal Ice",
+    "SugarLevel": "50% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 4:13:08 PM",
+    "Item": {
+      "Name": "Milk Tea Pudding",
+      "Description": "silky pudding made with tk signature blend",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p34_i3_w600.jpeg?width=160\u0026optimize=medium",
+      "Price": "$3.50",
+      "Category": "Dessert",
+      "Ratings": null
+    },
+    "Size": null,
+    "Sides": [],
+    "IceLevel": null,
+    "SugarLevel": null,
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 4:13:57 PM",
+    "Item": {
+      "Name": "Tofu Pudding",
+      "Description": "Organic tofu pudding made locally.",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p17_i1_w864.jpeg?width=160\u0026optimize=medium",
+      "Price": "$6.99",
+      "Category": "Dessert",
+      "Ratings": null
+    },
+    "Size": null,
+    "Sides": [],
+    "IceLevel": null,
+    "SugarLevel": null,
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  }
+]

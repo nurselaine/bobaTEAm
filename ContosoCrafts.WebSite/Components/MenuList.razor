@@ -22,7 +22,7 @@
 	Boolean NotCustomizable(MenuItem Item)
 	{
 		return Item.Category == "Merchandise" || Item.Category == "Sides" 
-		|| Item.Category == "Dessert" || Item.Category == "Paper Bag/Carrier";
+		|| Item.Category == "Dessert" || Item.Category == "Paper Bag/Carrier" || Item.Name == "Tea King Keychain";
 	}
 
 	protected override async Task OnInitializedAsync()
@@ -54,7 +54,6 @@
 
 	void UpdateProducts()
 	{
-		Console.WriteLine("Updating Products List");
 		CategoryList = MenuService.GetCategories();
 		MenuItems = MenuService.GetMenuItems().ToList();
 
@@ -104,7 +103,6 @@
 
 	void SubmitRating(int rating)
 	{
-		Console.WriteLine("SUBMIT RATING METHOD");
 		if (selectedProduct == null || selectedProduct.Category == null)
 			return;
 		System.Console.WriteLine($"Rating received for {selectedProduct?.Name}: {rating}");
@@ -128,10 +126,10 @@
 	string SelectedIceLevel;
 	string SelectedSugarLevel;
 	List<MenuItem> SelectedSides = new List<MenuItem>();
+	public Boolean orderProcessed = false;
 
 	private void UpdateSelectedItems(MenuItem item)
 	{
-		Console.WriteLine("Update Selected Sides");
 		if (SelectedSides.Contains(item))
 		{
 			SelectedSides.Remove(item);
@@ -145,30 +143,50 @@
 
 
 	// add boba user
-	private void SubmitForm()
+	private async Task SubmitForm()
 	{
-		Order order;
+		Order? order = new Order();
+		order.Item = selectedProduct;
+		order.TimeStamp = DateTime.Now.ToString();
 		// Non-customiable item
 		if (NotCustomizable(selectedProduct))
 		{
-			order = new Order(selectedProduct, null, null, null, null);
-			Console.WriteLine(selectedProduct);
-			Console.WriteLine(SelectedIceLevel);
-			OrderService.ProcessOrder("elaine", order);
+			order.Sides = SelectedSides.ToArray();
 		} else
 		{
-			order = new Order(selectedProduct, SelectedSides.ToArray(), SelectedSize, SelectedIceLevel, SelectedSugarLevel);
-			Console.WriteLine(selectedProduct);
-			Console.WriteLine(SelectedSize);
-			Console.WriteLine(SelectedSugarLevel);
-			Console.WriteLine(SelectedIceLevel);
-			OrderService.ProcessOrder("elaine", order);
+			order.Sides = SelectedSides.ToArray();
+			order.SugarLevel = SelectedSugarLevel;
+			order.IceLevel = SelectedIceLevel;
+			order.Size = SelectedSize;
 		}
+
+		OrderService.ProcessOrder("User Obj", order);
+
+		// reset form
+		ResetForm();
+		await DisplayOrderFeedback(5000);
+	}
+
+	public void ResetForm()
+	{
+		// reset form
+		SelectedIceLevel = "";
+		SelectedSize = "";
+		SelectedSugarLevel = "";
+		SelectedSides.Clear();
+	}
+
+	public async Task DisplayOrderFeedback(int milliseconds)
+	{
+		orderProcessed = true;
+		StateHasChanged();
+		await Task.Delay(milliseconds);
+		orderProcessed = false;
+		StateHasChanged();
 	}
 
 }
-@* Order UserOrder();
-		OrderService.ProcessOrder("BobaUser", UserOrder); *@
+
 @foreach (var (key, value) in products)
 {
 	<div class="container-fluid">
@@ -186,8 +204,8 @@
 					<div class="card m-2"
 						 style="width: 425px; height: 155px; padding: 20px">
 						<div class="d-flex flex-row align-items-center justify-content-between">
-							<div class="flex-grow-1 text-start">
-								<figure >
+							<div class="flex-grow-1 text-start " style="text-align: start">
+								<figure class="pr-2">
 									<p class="h5 text-start">@item.Name</p>
 									<p class="text-muted text-start" style="font-size: 1rem">
 										@item.Description
@@ -226,7 +244,13 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<!-- PRODUCT INFORMATION -->
-					<div class="modal-body">
+				<div class="modal-body">
+					@if (orderProcessed)
+					{
+						<div class="alert alert-success z-3" role="alert">
+							Your order has been added to the shopping cart!
+						</div>
+					}
 						<div class="d-flex flex-column align-items-center">
 							<div class="w-100">
 								@if(@selectedProduct.Image != null){
@@ -243,18 +267,17 @@
 								<p style="font-size: 1rem;  font-weight: 400; line-height: 2;">@selectedProduct.Price</p>
 							</div>
 						<!-- CUSTOMIZATION FORM body -->
+						<form @onsubmit="SubmitForm" class="w-100">
 						@if (!@NotCustomizable(selectedProduct))
 						{
-						<form @onsubmit="SubmitForm">
-
-						
+	
 							<div class="d-flex justify-content-start flex-column w-100" >
 								<p class="h6 text-start mt-1">Size</p>
 									<select class="form-select" aria-label="select size" @bind="SelectedSize" required>
 									<option selected>Select one</option>
 										@for (int i = 0; i < @Sizes.Count; i++)
 									{
-										<option value="@i">@Sizes[i]</option>
+											<option value="@Sizes[i]">@Sizes[i]</option>
 									}
 									</select>
 								<p class="h6 text-start mt-1">Ice Level</p>
@@ -262,7 +285,7 @@
 											<option selected>Select one</option>
 											@for (int i = 0; i < @IceLevel.Count; i++)
 											{
-												<option value="@i">@IceLevel[i]</option>
+											<option value="@IceLevel[i]">@IceLevel[i]</option>
 											}
 										</select>
 								<p class="h6 text-start mt-1">Sugar Level</p>
@@ -270,7 +293,7 @@
 											<option selected>Select one</option>
 											@for (int i = 0; i < @SugarLevel.Count; i++)
 											{
-											<option value="@i">@SugarLevel[i]</option>
+											<option value="@SugarLevel[i]">@SugarLevel[i]</option>
 											}
 										</select>
 								<p class="h6 text-start mt-1">Toppings</p>
@@ -295,20 +318,13 @@
 												</div>
 											}
 								</div>
+						}			
 								<!-- SUBMIT BUTTON -->
 								<div class="d-flex justify-content-start flex-direction-column w-100 py-2">
-									<button class="btn btn-primary" type="button" data-dismiss="modal">X</button>
+									<button class="btn btn-primary" type="reset" data-dismiss="modal">X</button>
 									<button class="btn btn-primary" type="submit" style="width: 90%">Add to order</button>
 								</div>
 							</form>
-						} else
-						{			
-							<!-- SUBMIT BUTTON -->
-							<div class="d-flex justify-content-start flex-direction-column w-100 py-2">
-								<button class="btn btn-primary" type="button" data-dismiss="modal">X</button>
-								<button class="btn btn-primary" type="submit" style="width: 90%">Add to order</button>
-							</div>
-						}
 						</div>
 					</div>
 
