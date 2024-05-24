@@ -6,8 +6,6 @@ namespace ContosoCrafts.WebSite.Models
 {
 	public class Order
 	{
-
-		public Order() { } // parameterless constructor
 		public Order(MenuItem item, MenuItem[] sides, string size, string iceLevel, string sugarLevel)
 		{
 			TimeStamp = DateTime.Now.ToString();
