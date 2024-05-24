@@ -8,14 +8,14 @@ namespace ContosoCrafts.WebSite.Pages
 {
     public class DedicatedIndexModel : PageModel
     {
-        public DedicatedIndexModel(JsonFileProductService productService)
+        public DedicatedIndexModel(JsonFileMenuServices productService)
         {
             ProductService = productService;
         }
 
-        public JsonFileProductService ProductService { get; }
-        public IEnumerable<Product>? Products { get; private set; }
+        public JsonFileMenuServices ProductService { get; }
+        public IEnumerable<MenuItem>? Products { get; private set; }
 
-        public void OnGet() => Products = ProductService.GetProducts();
+        public void OnGet() => Products = ProductService.GetMenuItems();
     }
 }

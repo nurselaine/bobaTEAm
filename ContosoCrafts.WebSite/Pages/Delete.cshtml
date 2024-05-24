@@ -1,6 +1,6 @@
-﻿@page "{id}"
+﻿@page "{name}"
 @using ContosoCrafts.WebSite.Services
-@inject JsonFileProductService ProductService
+@inject JsonFileMenuServices ProductService
 @model DeleteModel
 
 @{
@@ -12,26 +12,36 @@
 <div class="container">
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @Html.HiddenFor(x => x.Item.Id)
+        @Html.HiddenFor(x => x.Item.Name)
 
         <div class="form-group">
-            <label asp-for="Item.Title" class="control-label"></label>
-            <input asp-for="Item.Title" class="form-control" disabled/>
+            <label asp-for="Item.Name" class="control-label"></label>
+            <input asp-for="Item.Name" class="form-control" disabled/>
+            <span asp-validation-for="Item.Name" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Item.Description" class="control-label"></label>
-            <input asp-for="Item.Description" class="form-control" disabled />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Item.Url" class="control-label"></label>
-            <input asp-for="Item.Url" class="form-control" disabled />
+            <input asp-for="Item.Description" class="form-control" disabled/>
+            <span asp-validation-for="Item.Description" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Item.Image" class="control-label"></label>
             <input asp-for="Item.Image" class="form-control" disabled />
+            <span asp-validation-for="Item.Image" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Item.Price" class="control-label"></label>
+            <input asp-for="Item.Price" class="form-control" disabled />
+            <span asp-validation-for="Item.Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Item.Category" class="control-label"></label>
+            <input asp-for="Item.Category" class="form-control" disabled />
+            <span asp-validation-for="Item.Category" class="text-danger"></span>
         </div>
 
         <h1>Confirm Delete of this item</h1>
