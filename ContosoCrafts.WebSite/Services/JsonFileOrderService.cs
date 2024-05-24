@@ -20,32 +20,35 @@ namespace ContosoCrafts.WebSite.Services
 
 		public IEnumerable<Order> GetAllOrders()
 		{
+			if (!File.Exists(orderFilename))
+			{
+				return new List<Order>();
+			}
+
 			using var jsonFileReader = File.OpenText(orderFilename);
+			var json = jsonFileReader.ReadToEnd();
 
 			// deserialize JSON data into OrderData object
-			return JsonSerializer.Deserialize<Order[]>(jsonFileReader.ReadToEnd(),
-				new JsonSerializerOptions
-				{
-					PropertyNameCaseInsensitive = true,
-				});
+			return JsonSerializer.Deserialize<IEnumerable<Order>>(json, new JsonSerializerOptions
+			{
+				PropertyNameCaseInsensitive = true
+			}) ?? new List<Order>();
 		}
 
 		public void ProcessOrder(string userId, Order order)
 		{
-	/*		var orders = GetAllOrders().ToList();
-
+			System.Console.WriteLine(order);
+			var orders = GetAllOrders().ToList();
 			orders.Add(order);
 
-			using var outputStream = File.OpenWrite(orderFilename);
-
-			JsonSerializer.Serialize<IEnumerable<MenuItem>>(
-				new Utf8JsonWriter(outputStream, new JsonWriterOptions
-				{
-					SkipValidation = true,
-					Indented = true
-				}),
-				orders
-			);*/
+			using var outputStream = File.Create(orderFilename);
+			var writerOptions = new JsonWriterOptions
+			{
+				SkipValidation = true,
+				Indented = true,
+			};
+			using var writer = new Utf8JsonWriter(outputStream, writerOptions);
+			JsonSerializer.Serialize(writer, orders);
 		}
 	}
 }
