@@ -26,9 +26,9 @@ namespace ContosoCrafts.WebSite.Pages
 
         /// REST Get request
         /// Loads the Data
-        public void OnGet(string name)
+        public void OnGet(string id)
         {
-            Item = ProductService.GetMenuItems().FirstOrDefault(m => m.Name.Equals(name));
+            Item = ProductService.GetMenuItems().FirstOrDefault(m => m.Id.Equals(id));
             if (Item == null)
             {
                 this.ModelState.AddModelError("OnGet Delete", "Unable to Delete, Item is null");
@@ -45,12 +45,12 @@ namespace ContosoCrafts.WebSite.Pages
             {
                 return Page();
             }
-            if (Item.Name == null)
+            if (Item.Id == null)
             {
                 this.ModelState.AddModelError("OnPost Delete", "Unable to Delete, Item is null");
             } else
             {
-                ProductService.DeleteData(Item.Name);
+                ProductService.DeleteData(Item.Id);
             }
             return RedirectToPage("./DedicatedIndex");
 

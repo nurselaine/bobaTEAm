@@ -83,14 +83,14 @@ namespace ContosoCrafts.WebSite.Services
             bool isValidUpdate = false;
 
             var products = GetMenuItems();
-            var productData = products.FirstOrDefault(x => x.Name.Equals(data.Name));
+            var productData = products.FirstOrDefault(x => x.Id.Equals(data.Id));
             if (productData == null)
             {
                 return isValidUpdate;
             }
 
             // Create a new product list without the changed object
-            var newProductList = products.Where(x => x.Name != data.Name);
+            var newProductList = products.Where(x => x.Id != data.Id);
             newProductList = newProductList.Append(data);
 
             // Store it back in Json File
@@ -117,19 +117,19 @@ namespace ContosoCrafts.WebSite.Services
         }
 
 
-        public bool DeleteData(string productName)
+        public bool DeleteData(string productId)
         {
             bool isValidDelete = false;
 
             var products = GetMenuItems();
-            var productData = products.FirstOrDefault(x => x.Name.Equals(productName));
+            var productData = products.FirstOrDefault(x => x.Id.Equals(productId));
             if (productData == null)
             {
                 return isValidDelete;
             }
 
             // Create a new product list without the changed object
-            var newProductList = products.Where(x => x.Name != productName);
+            var newProductList = products.Where(x => x.Id != productId);
 
             // Store it back in Json File
             SaveData(newProductList);

@@ -30,7 +30,8 @@ namespace ContosoCrafts.WebSite.Pages
         {
             Item = new MenuItem()
             {
-                Name = System.Guid.NewGuid().ToString(),
+                Id = System.Guid.NewGuid().ToString(),
+                Name = "",
                 Description = "",
                 Image = "",
                 Price = "",

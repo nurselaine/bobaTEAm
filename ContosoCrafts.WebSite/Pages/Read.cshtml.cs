@@ -17,9 +17,9 @@ namespace ContosoCrafts.WebSite.Pages
 
         public MenuItem Item;
 
-        public IActionResult OnGet(string name)
+        public IActionResult OnGet(string id)
         {
-            Item = ProductService.GetMenuItems().FirstOrDefault(x => x.Name.Equals(name));
+            Item = ProductService.GetMenuItems().FirstOrDefault(x => x.Id.Equals(id));
             if (Item == null)
             {
                 this.ModelState.AddModelError("OnGet Read", "Unable to Read, Item is null");

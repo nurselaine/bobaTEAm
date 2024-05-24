@@ -1,4 +1,4 @@
-﻿@page "{name}"
+﻿@page "{id}"
 @using ContosoCrafts.WebSite.Services
 @using ContosoCrafts.WebSite.Models
 @inject JsonFileMenuServices ProductService
@@ -22,6 +22,6 @@
 <br />
 
 <div class="row">
-    <a asp-page="Update" asp-route-id="@Model.Item.Name" class="btn btn-primary">Update</a> &nbsp; &nbsp;
-    <a asp-page="Delete" asp-route-id="@Model.Item.Name" class="btn btn-danger">Delete</a>
+    <a asp-page="Update" asp-route-id="@Model.Item.Id" class="btn btn-primary">Update</a> &nbsp; &nbsp;
+    <a asp-page="Delete" asp-route-id="@Model.Item.Id" class="btn btn-danger">Delete</a>
 </div>

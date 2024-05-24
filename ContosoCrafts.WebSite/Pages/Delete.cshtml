@@ -1,4 +1,4 @@
-﻿@page "{name}"
+﻿@page "{id}"
 @using ContosoCrafts.WebSite.Services
 @inject JsonFileMenuServices ProductService
 @model DeleteModel
@@ -12,7 +12,7 @@
 <div class="container">
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @Html.HiddenFor(x => x.Item.Name)
+        @Html.HiddenFor(x => x.Item.Id)
 
         <div class="form-group">
             <label asp-for="Item.Name" class="control-label"></label>

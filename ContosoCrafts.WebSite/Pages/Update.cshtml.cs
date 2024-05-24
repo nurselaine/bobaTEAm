@@ -26,9 +26,9 @@ namespace ContosoCrafts.WebSite.Pages
 
         /// REST Get request
         /// Loads the Data
-        public void OnGet(string name)
+        public void OnGet(string id)
         {
-            Item = ProductService.GetMenuItems().FirstOrDefault(m => m.Name.Equals(name));
+            Item = ProductService.GetMenuItems().FirstOrDefault(m => m.Id.Equals(id));
             if (Item == null)
             {
                 this.ModelState.AddModelError("OnGet Update", "Unable to Update, Item is null");
