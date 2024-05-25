@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
 @using ContosoCrafts.WebSite.Models
 @using ContosoCrafts.WebSite.Services
-@inject JsonFileProductService ProductService
+@inject JsonFileMenuServices ProductService
 
 <!--Create a table listing all items in the database-->
 <div class="container">
@@ -13,12 +13,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in ProductService.GetProducts().OrderBy(m => m.Title))
+            @foreach (var product in ProductService.GetMenuItems().OrderBy(m => m.Name))
             {
                 <tr>
                     <!--Display title of each entry in the products.json file-->
                     <td>
-                        @product.Title
+                        @product.Name
                     </td>
                     <!--Display link to each entry in the products.json file -->
                     <td>

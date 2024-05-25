@@ -75,5 +75,88 @@ namespace ContosoCrafts.WebSite.Services
 			);
 		}
 
-	}
+        /// Find the data record
+        /// Update the fields
+        /// Save to the data store
+        public bool UpdateData(MenuItem data)
+        {
+            bool isValidUpdate = false;
+
+            var products = GetMenuItems();
+            var productData = products.FirstOrDefault(x => x.Id.Equals(data.Id));
+            if (productData == null)
+            {
+                return isValidUpdate;
+            }
+
+            // Create a new product list without the changed object
+            var newProductList = products.Where(x => x.Id != data.Id);
+            newProductList = newProductList.Append(data);
+
+            // Store it back in Json File
+            SaveData(newProductList);
+
+            isValidUpdate = true;
+            return isValidUpdate;
+        }
+
+        /// Create a new product using default values
+        /// After create the user can update to set values
+        public MenuItem CreateData(MenuItem data)
+        {
+
+            // Get the current set, and append the new record to it
+            var dataSet = GetMenuItems();
+            dataSet = dataSet.Append(data);
+
+            SaveData(dataSet);
+
+            // return the data
+            return data;
+
+        }
+
+
+        public bool DeleteData(string productId)
+        {
+            bool isValidDelete = false;
+
+            var products = GetMenuItems();
+            var productData = products.FirstOrDefault(x => x.Id.Equals(productId));
+            if (productData == null)
+            {
+                return isValidDelete;
+            }
+
+            // Create a new product list without the changed object
+            var newProductList = products.Where(x => x.Id != productId);
+
+            // Store it back in Json File
+            SaveData(newProductList);
+
+            isValidDelete = true;
+            return isValidDelete;
+        }
+
+
+        /// Save All products data to storage
+        private void SaveData(IEnumerable<MenuItem> menuitems)
+        {
+
+            using (var outputStream = File.Create(menuFileName))
+            {
+                JsonSerializer.Serialize<IEnumerable<MenuItem>>(
+                    new Utf8JsonWriter(outputStream, new JsonWriterOptions
+                    {
+                        SkipValidation = true,
+                        Indented = true
+                    }),
+                    menuitems
+                );
+            }
+        }
+
+
+
+    }
 }

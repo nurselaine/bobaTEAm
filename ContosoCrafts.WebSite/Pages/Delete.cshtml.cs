@@ -12,23 +12,23 @@ namespace ContosoCrafts.WebSite.Pages
     public class DeleteModel : PageModel
     {
         // Data middletier
-        public JsonFileProductService ProductService { get; }
+        public JsonFileMenuServices ProductService { get; }
 
         /// Default Construtor
-        public DeleteModel(JsonFileProductService productService)
+        public DeleteModel(JsonFileMenuServices productService)
         {
             ProductService = productService;
         }
 
         // The data to show, bind to it for the post
         [BindProperty]
-        public Product Item { get; set; }
+        public MenuItem Item { get; set; }
 
         /// REST Get request
         /// Loads the Data
         public void OnGet(string id)
         {
-            Item = ProductService.GetProducts().FirstOrDefault(m => m.Id.Equals(id));
+            Item = ProductService.GetMenuItems().FirstOrDefault(m => m.Id.Equals(id));
             if (Item == null)
             {
                 this.ModelState.AddModelError("OnGet Delete", "Unable to Delete, Item is null");

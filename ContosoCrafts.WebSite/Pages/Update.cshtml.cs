@@ -12,23 +12,23 @@ namespace ContosoCrafts.WebSite.Pages
     public class UpdateModel : PageModel
     {
         // Data middletier
-        public JsonFileProductService ProductService { get; }
+        public JsonFileMenuServices ProductService { get; }
 
         /// Default Construtor
-        public UpdateModel(JsonFileProductService productService)
+        public UpdateModel(JsonFileMenuServices productService)
         {
             ProductService = productService;
         }
 
         // The data to show, bind to it for the post
         [BindProperty]
-        public Product Item { get; set; }
+        public MenuItem Item { get; set; }
 
         /// REST Get request
         /// Loads the Data
         public void OnGet(string id)
         {
-            Item = ProductService.GetProducts().FirstOrDefault(m => m.Id.Equals(id));
+            Item = ProductService.GetMenuItems().FirstOrDefault(m => m.Id.Equals(id));
             if (Item == null)
             {
                 this.ModelState.AddModelError("OnGet Update", "Unable to Update, Item is null");

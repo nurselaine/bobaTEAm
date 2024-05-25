@@ -8,18 +8,18 @@ namespace ContosoCrafts.WebSite.Pages
 {
     public class ReadModel : PageModel
     {
-        public JsonFileProductService ProductService { get; }
+        public JsonFileMenuServices ProductService { get; }
 
-        public ReadModel(JsonFileProductService productService) 
+        public ReadModel(JsonFileMenuServices productService) 
         {
             ProductService = productService;
         }
 
-        public Product Item;
+        public MenuItem Item;
 
         public IActionResult OnGet(string id)
         {
-            Item = ProductService.GetProducts().FirstOrDefault(x => x.Id.Equals(id));
+            Item = ProductService.GetMenuItems().FirstOrDefault(x => x.Id.Equals(id));
             if (Item == null)
             {
                 this.ModelState.AddModelError("OnGet Read", "Unable to Read, Item is null");

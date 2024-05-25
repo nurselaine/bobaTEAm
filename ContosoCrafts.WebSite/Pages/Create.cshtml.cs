@@ -12,29 +12,31 @@ namespace ContosoCrafts.WebSite.Pages
     public class CreateModel : PageModel
     {
         // Data middletier
-        public JsonFileProductService ProductService { get; }
+        public JsonFileMenuServices ProductService { get; }
 
         /// Default Construtor
-        public CreateModel(JsonFileProductService productService)
+        public CreateModel(JsonFileMenuServices productService)
         {
             ProductService = productService;
         }
 
         // The data to show, bind to it for the post
         [BindProperty]
-        public Product Item { get; set; }
+        public MenuItem Item { get; set; }
 
         /// REST Get request
         /// Loads the Data
         public void OnGet()
         {
-            Item = new Product()
+            Item = new MenuItem()
             {
                 Id = System.Guid.NewGuid().ToString(),
-                Title = "",
+                Name = "",
                 Description = "",
-                Url = "",
                 Image = "",
+                Price = "",
+                Category = "",
+                Ratings = { }
             };
         }
 

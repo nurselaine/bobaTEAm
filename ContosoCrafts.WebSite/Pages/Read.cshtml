@@ -1,7 +1,7 @@
 ﻿@page "{id}"
 @using ContosoCrafts.WebSite.Services
 @using ContosoCrafts.WebSite.Models
-@inject JsonFileProductService ProductService
+@inject JsonFileMenuServices ProductService
 @model ReadModel
 
 @{
@@ -11,9 +11,11 @@
 <h1>Read</h1>
 
 <div class="container">
-    <h5 class="title" id="productTitle">@Model.Item.Title</h5>
-    <img class="card-img" src='@Model.Item.Image' alt='Image for @Model.Item.Title' />
+    <h5 class="title" id="productTitle">@Model.Item.Name</h5>
+    <img class="card-img" src='@Model.Item.Image' alt='Image for @Model.Item.Name' />
     <p class="card-text">@Model.Item.Description</p>
+    <p class="card-text">@Model.Item.Price</p>
+    <p class="card-text">@Model.Item.Category</p>
 </div>
 
 <br />
