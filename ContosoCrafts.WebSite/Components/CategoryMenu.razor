@@ -1,17 +1,13 @@
 ﻿@using ContosoCrafts.WebSite.Services
 @inject JsonFileMenuServices MenuService
 
-<nav>
-    <ul>
-        @foreach (var category in MenuService.GetCategories())
-        {
-            <li>
-                <a href="/Products?category=@category.CategoryName">@category.CategoryName</a>
-            </li>
-        }
-    </ul>
+<nav style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+    @foreach (var category in MenuService.GetCategories())
+    {
+        <a href="#@category.CategoryName.ToLower().Replace(" ", "-")" style="margin-right: 10px;">@category.CategoryName</a>
+    }
+
 </nav>
-
-
 
 

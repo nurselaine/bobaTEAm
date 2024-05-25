@@ -69,6 +69,17 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="css/font-awesome/js/all.min.js"></script>
 
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });</script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
