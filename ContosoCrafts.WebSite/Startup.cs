@@ -28,6 +28,7 @@ namespace ContosoCrafts.WebSite
             services.AddTransient<JsonFileProductService>();
             services.AddTransient<JsonFileMenuServices>();
             services.AddTransient<JsonFileOrderService>();
+            services.AddTransient<JsonFileReviewService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
