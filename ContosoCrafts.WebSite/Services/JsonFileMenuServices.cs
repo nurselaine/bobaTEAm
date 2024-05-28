@@ -1,6 +1,5 @@
 ﻿using ContosoCrafts.WebSite.Models;
 using Microsoft.AspNetCore.Hosting;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +9,6 @@ namespace ContosoCrafts.WebSite.Services
 {
     public class JsonFileMenuServices
     {
-
 		public IWebHostEnvironment WebHostEnvironment { get; }
         private string menuFileName;
         private string categoryFileName;
@@ -22,7 +20,6 @@ namespace ContosoCrafts.WebSite.Services
 			categoryFileName = Path.Combine(WebHostEnvironment.WebRootPath, "data", "categories.json");
 		}
 
-     
         public IEnumerable<MenuItem> GetMenuItems()
         {
             using var jsonFileReader = File.OpenText(menuFileName);

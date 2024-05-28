@@ -1,26 +1,5 @@
 [
   {
-    "Id": "jenlooper-cactus",
-    "Maker": "@jenlooper",
-    "img": "https://user-images.githubusercontent.com/41929050/61567048-13938600-aa33-11e9-9cfd-712191013192.jpeg",
-    "Url": "https://www.hackster.io/agent-hawking-1/the-quantified-cactus-an-easy-plant-soil-moisture-sensor-e65393",
-    "Title": "The Quantified Cactus: An Easy Plant Soil Moisture Sensor",
-    "Description": "This project is a good learning project to get comfortable with soldering and programming an Arduino.",
-    "Ratings": [
-      5,
-      5
-    ]
-  },
-  {
-    "Id": "jenlooper-light",
-    "Maker": "jenlooper",
-    "img": "https://user-images.githubusercontent.com/41929050/61567049-13938600-aa33-11e9-9c69-a4184bf8e524.jpeg",
-    "Url": "https://www.hackster.io/agent-hawking-1/book-light-dee7e4",
-    "Title": "A beautiful switch-on book light",
-    "Description": "Use craft items you have around the house, plus two LEDs and a LilyPad battery holder, to create a useful book light for reading in the dark.",
-    "Ratings": null
-  },
-  {
     "Id": "jenlooper-lightshow",
     "Maker": "@jenlooper",
     "img": "https://user-images.githubusercontent.com/41929050/61567053-13938600-aa33-11e9-9780-104fe4019659.png",
@@ -81,15 +60,6 @@
     "Url": "https://www.instagram.com/p/BNvESj-j8PI/",
     "Title": "Black Sweatshirt",
     "Description": "Black sweatshirt hoody with the Sick of the Internet logo.",
-    "Ratings": null
-  },
-  {
-    "Id": "selinazawacki-soi-pins",
-    "Maker": "selinazawacki",
-    "img": "https://user-images.githubusercontent.com/41929050/61567059-142c1c80-aa33-11e9-939b-2ecf4492786d.png",
-    "Url": "https://www.instagram.com/p/BNm6hZzDoEF/",
-    "Title": "Sick of the Internet Pins",
-    "Description": "Still some time to enter the pin/sticker giveaway! ",
     "Ratings": null
   },
   {
@@ -154,6 +124,15 @@
     "Url": "https://www.instagram.com/p/BEXlpiZCnJ3",
     "Title": "Floppy Crop",
     "Description": "Used up the Diskette fabric today to make 2 of these crops.",
+    "Ratings": null
+  },
+  {
+    "Id": "jenlooper-light",
+    "Maker": null,
+    "img": "https://user-images.githubusercontent.com/41929050/61567049-13938600-aa33-11e9-9c69-a4184bf8e524.jpeg",
+    "Url": "https://www.hackster.io/agent-hawking-1/book-light-dee7e4",
+    "Title": "A beautiful switch-on book light",
+    "Description": "Use craft items you have around the house, plus two LEDs and a LilyPad battery holder, to create a useful book light for reading in the dark.",
     "Ratings": null
   }
 ]

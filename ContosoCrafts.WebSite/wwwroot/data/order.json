@@ -381,5 +381,83 @@
     "SugarLevel": null,
     "OrderTotal": 0,
     "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 6:20:09 PM",
+    "Item": {
+      "Name": "Oo-Plum",
+      "Description": "fresh plum puree shaken with oolong tea",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p117_i1_w1080.jpeg?width=160\u0026optimize=medium",
+      "Price": "$5.50",
+      "Category": "New \u0026 Limited Items",
+      "Ratings": [
+        3,
+        3,
+        4,
+        5,
+        4,
+        5,
+        5,
+        1,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "Size": "REGULAR (500ml)",
+    "Sides": [
+      {
+        "Name": "Lychee Jelly on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.80",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Less Ice",
+    "SugarLevel": "25% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
+  },
+  {
+    "TimeStamp": "5/21/2024 6:29:26 PM",
+    "Item": {
+      "Name": "Oo-Plum",
+      "Description": "fresh plum puree shaken with oolong tea",
+      "image": "https://135000563.cdn6.editmysite.com/uploads/1/3/5/0/135000563/s640502002607981835_p117_i1_w1080.jpeg?width=160\u0026optimize=medium",
+      "Price": "$5.50",
+      "Category": "New \u0026 Limited Items",
+      "Ratings": [
+        3,
+        3,
+        4,
+        5,
+        4,
+        5,
+        5,
+        1,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "Size": "LARGE (700ml) (\u002B$1.00)",
+    "Sides": [
+      {
+        "Name": "Aloe on the Side",
+        "Description": "",
+        "image": null,
+        "Price": "$0.90",
+        "Category": "Sides",
+        "Ratings": null
+      }
+    ],
+    "IceLevel": "Less Ice",
+    "SugarLevel": "75% sweet",
+    "OrderTotal": 0,
+    "OrderSubtotal": 0
   }
 ]
