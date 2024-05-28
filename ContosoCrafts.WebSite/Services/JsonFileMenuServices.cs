@@ -50,7 +50,7 @@ namespace ContosoCrafts.WebSite.Services
 		public void AddRating(string productId, int rating)
 		{
 			var products = GetMenuItems().ToList();
-			MenuItem selectedProductRatings = products.First(x => x.Name == productId);
+			MenuItem selectedProductRatings = products.First(x => x.Id == productId);
 
 			if (selectedProductRatings.Ratings == null)
 			{
@@ -58,9 +58,9 @@ namespace ContosoCrafts.WebSite.Services
 			}
 			else
 			{
-				var ratings = products.First(x => x.Name == productId).Ratings.ToList();
+				var ratings = products.First(x => x.Id == productId).Ratings.ToList();
 				ratings.Add(rating);
-				products.First(x => x.Name == productId).Ratings = ratings.ToArray();
+				products.First(x => x.Id == productId).Ratings = ratings.ToArray();
 			}
 
 			using var outputStream = File.OpenWrite(menuFileName);
