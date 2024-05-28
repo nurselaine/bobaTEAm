@@ -54,12 +54,58 @@ table {
     border-spacing: 0;
 }
 
+.review-box {
+    float: left;
+    width: 65%;
+    padding: 5px;
+    padding-bottom: 60px;
+    overflow: auto;
+}
+
+.vl {
+    float: left;
+    width: 5%;
+    padding: 5px;
+}
+
+.item-box {
+    float: left;
+    width: 30%;
+    padding: 5px;
+}
+
 .checked {
     color: orange;
 }
 
-.fa-star {
-  cursor: pointer;
+.thick-star {
+    font-size: 24px;
+}
+
+
+.rating {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.rating label:hover,
+.rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
+    color: orange;
+}
+
+.rating input:checked ~ label {
+    color: orange;
 }
 
 a.navbar-brand {
