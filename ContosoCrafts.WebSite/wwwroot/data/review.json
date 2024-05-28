@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "1",
+    "Username": "blah1983",
+    "Title": "Not my cup of tea",
+    "Description": "The flavour and combination of ingredient is totally off like my vibe!",
+    "ProductId": "1",
+    "UserId": "4",
+    "Rating": 3,
+    "CreateDate": "2024-03-14T15:56:59.712193-07:00"
+  },
+  {
+    "Id": "2",
+    "Username": "BobaComfy",
+    "Title": "Cute keychain",
+    "Description": "This keychain is so worth the money and looks cute on my backpack.",
+    "ProductId": "2",
+    "UserId": "5",
+    "Rating": 4,
+    "CreateDate": "2024-01-25T14:56:59.712193-08:00"
+  },
+  {
+    "Id": "3",
+    "Username": "Wasabi",
+    "Title": "pretty mid",
+    "Description": "For a tea that costs $7.00, this feel like a watered down drink.",
+    "ProductId": "1",
+    "UserId": "6",
+    "Rating": 2,
+    "CreateDate": "2023-12-23T14:56:59.712193-08:00"
+  }
+]
