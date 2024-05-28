@@ -239,8 +239,9 @@
 			@if (selectedProduct != null)
 			{			
 				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">@selectedProduct.Name</h4>
+				<div class="modal-header" style="align-items: center;">
+					<span class="modal-title">@selectedProduct.Name &nbsp;&nbsp;&nbsp;</span>
+					<a href="./Review/@selectedProduct.Id"><u>Reviews</u></a>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<!-- PRODUCT INFORMATION -->
