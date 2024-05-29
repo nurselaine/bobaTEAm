@@ -239,8 +239,9 @@
 			@if (selectedProduct != null)
 			{			
 				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">@selectedProduct.Name</h4>
+				<div class="modal-header" style="align-items: center;">
+					<span class="modal-title">@selectedProduct.Name &nbsp;&nbsp;&nbsp;</span>
+					<a href="./Review/@selectedProduct.Id"><u>Reviews</u></a>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<!-- PRODUCT INFORMATION -->
@@ -330,26 +331,6 @@
 
 				<!-- RATINGS FEATURE -->
 				<div class="modal-footer">
-				@if (voteCount == 0)
-				{
-					<span>Be the first to vote!</span>
-				}
-				else
-				{
-					<span>@voteCount @voteLabel</span>
-				}
-				@for (int i = 1; i < 6; i++)
-				{
-					var currentStar = i;
-					if (i <= currentRating)
-					{
-						<span class="fa fa-star checked" @onclick="(e => SubmitRating(currentStar))"></span>
-					}
-					else
-					{
-						<span class="fa fa-star" @onclick="(e => SubmitRating(currentStar))"></span>
-					}
-				}
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			}

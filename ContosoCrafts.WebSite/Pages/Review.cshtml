@@ -1,0 +1,140 @@
+﻿@page "{id}"
+@using System;
+@using ContosoCrafts.WebSite.Models
+@using ContosoCrafts.WebSite.Services
+@using ContosoCrafts.WebSite.Components
+@inject JsonFileMenuServices MenuService
+@inject JsonFileReviewService ReviewService
+@model ReviewModel
+
+@{
+    ViewData["Title"] = "Review page";
+}
+
+<div class="container">
+	<div class="review-box">
+		<div class="review-header-totalrating">
+			<h1 style="font-size: 2.0rem; line-height: 2;"><b>Reviews</b></h1>
+			@{
+				double currentRating;
+				int voteCount;
+				if (Model.Item.Ratings == null)
+				{
+					currentRating = 0;
+					voteCount = 0;
+				}
+				else
+				{
+					voteCount = Model.Item.Ratings.Count();
+					currentRating = (double)Model.Item.Ratings.Sum() / voteCount;
+					currentRating = Math.Round(currentRating, 1);
+				}
+			}
+			@for (int i = 1; i < 6; i++)
+			{
+				if (i <= currentRating)
+				{
+					<label class ="thick-star checked">&#9733;</label>
+				}
+				else
+				{
+					<label class="thick-star">&#9733;</label>
+				}
+			}
+			<p style="font-size: 1.25rem; line-height: 2; font-weight: 600;">@currentRating&nbsp;(@voteCount)</p>
+			<hr>
+		</div>
+		<div class="review-list">
+			@foreach (var perReview in Model.Reviews)
+			{
+				<div class="each-review">
+					<p style="font-size: 1.2rem; line-height: 2; font-weight: bold;"><b>@perReview.Username</b></p>
+					@for (int i = 1; i < 6; i++)
+					{
+						if (i <= perReview.Rating)
+						{
+							<label class="thick-star checked">&#9733;</label>
+						}
+						else
+						{
+							<label class="thick-star">&#9733;</label>
+						}
+					}
+					<br>
+					<p style="line-height: 2; font-weight: bold;">@perReview.Title</p>
+					<p style="line-height: 2;">@perReview.CreateDate.Value.Date.ToString("d")</p>
+					<p style="line-height: 2;">@perReview.Description</p>
+					<hr>
+				</div>
+			}
+		</div>
+		<div class="review-submission">
+			<form method="post">
+				
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				@Html.HiddenFor(x => x.review.Id)
+
+				<div class="rating form-group">
+					<input asp-for="review.Rating" type="radio" id="star5" value="5" class="form-control">
+					<label asp-for="review.Rating" for="star5">&#9733;</label>
+					<input asp-for="review.Rating" type="radio" id="star4" value="4" class="form-control">
+					<label asp-for="review.Rating" for="star4">&#9733;</label>
+					<input asp-for="review.Rating" type="radio" id="star3" value="3" class="form-control">
+					<label asp-for="review.Rating" for="star3">&#9733;</label>
+					<input asp-for="review.Rating" type="radio" id="star2" value="2" class="form-control">
+					<label asp-for="review.Rating" for="star2">&#9733;</label>
+					<input asp-for="review.Rating" type="radio" id="star1" value="1" class="form-control">
+					<label asp-for="review.Rating" for="star1">&#9733;</label>
+					<span asp-validation-for="review.Rating" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="review.Username" class="control-label"></label>
+					<input asp-for="review.Username" class="form-control" />
+					<span asp-validation-for="review.Username" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="review.Title" class="control-label"></label>
+					<input asp-for="review.Title" class="form-control" />
+					<span asp-validation-for="review.Title" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="review.Description" class="control-label"></label>
+					<textarea asp-for="review.Description" class="form-control"></textarea>
+					<span asp-validation-for="review.Description" class="text-danger"></span>
+				</div>
+
+				<div class="form-group" hidden>
+					<label asp-for="review.ProductId" class="control-label"></label>
+					<input asp-for="review.ProductId" value="@Model.Item.Id" class="form-control"/>
+					<span asp-validation-for="review.ProductId" class="text-danger"></span>
+				</div>
+
+				<div class="form-group" hidden>
+					<label asp-for="review.UserId" class="control-label"></label>
+					<input asp-for="review.UserId" value="3" class="form-control" />
+					<span asp-validation-for="review.UserId" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<input type="submit" value="Submit" class="btn btn-primary" />
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<div class="vl"></div>
+	<div class="item-box">
+		<p style="font-size: 1.0rem; font-weight: 400; line-height: 2;" id="productTitle"><b>@Model.Item.Name</b></p>
+		<img class="card-img" src='@Model.Item.Image' alt='Image for @Model.Item.Name' style="width: 300px; height: 300px; line-height: 2;" />
+		<p style="font-size: 1.0rem; font-weight: 400; line-height: 2;"><b>@Model.Item.Description</b></p>
+		<p style="font-size: 1.0rem; font-weight: 400; line-height: 2;"><b>@Model.Item.Price</b></p>
+		<p style="font-size: 1.0rem; font-weight: 400; line-height: 2;"><b>@Model.Item.Category</b></p>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
