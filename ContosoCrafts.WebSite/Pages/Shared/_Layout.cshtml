@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using ContosoCrafts.WebSite.Components
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
     <header>
@@ -34,6 +36,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/DedicatedIndex">Products</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/DedicatedIndex">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -41,6 +44,11 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </nav>
+        <nav class="bg-light border-bottom box-shadow mb-3">
+            <div class="container">
+                <component type="typeof(CategoryMenu)" render-mode="ServerPrerendered" />
             </div>
         </nav>
     </header>
@@ -60,6 +68,17 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="css/font-awesome/js/all.min.js"></script>
+
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });</script>
 
     @RenderSection("Scripts", required: false)
 </body>

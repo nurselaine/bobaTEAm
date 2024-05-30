@@ -189,45 +189,43 @@
 
 @foreach (var (key, value) in products)
 {
-	<div class="container-fluid">
-		<h1 class="h4 px-3">@key</h1>
-		<div class="d-flex p-2 flex-wrap">
-			@foreach (var item in products[key])
-			{
-				<button 
-					class="btn-light" 
-					data-toggle="modal" 
-					data-target="#myModal" 
-					@onclick="(e => SelectProduct(item?.Name ?? string.Empty))" 
-					style="background: none; border: none; padding: 0"
-				>
-					<div class="card m-2"
-						 style="width: 425px; height: 155px; padding: 20px">
-						<div class="d-flex flex-row align-items-center justify-content-between">
-							<div class="flex-grow-1 text-start " style="text-align: start">
-								<figure class="pr-2">
-									<p class="h5 text-start">@item.Name</p>
-									<p class="text-muted text-start" style="font-size: 1rem">
-										@item.Description
-									</p>
-									<p class="h6 text-start">@item.Price</p>
-								</figure>
-							</div>
-							@if (@item.Image != null)
-							{
-								<div>
-									<img src="@item.Image"
-										 alt="@item.Name"
-										 class="rounded float-end"
-										 style="width: 75px; height: 75px" />
-								</div>
-							}
-						</div>
-					</div>
-				</button>
-			}
-		</div>
-	</div>
+    <div id="@key.ToLower().Replace(" ", "-")" class="container-fluid category-section">
+        <h1 class="h4 px-3">@key</h1>
+        <div class="d-flex p-2 flex-wrap">
+            @foreach (var item in products[key])
+            {
+                <button class="btn-light"
+                        data-toggle="modal"
+                        data-target="#myModal"
+                        @onclick="(e => SelectProduct(item?.Name ?? string.Empty))"
+                        style="background: none; border: none; padding: 0">
+                    <div class="card m-2"
+                         style="width: 425px; height: 155px; padding: 20px">
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <div class="flex-grow-1 text-start " style="text-align: start">
+                                <figure class="pr-2">
+                                    <p class="h5 text-start">@item.Name</p>
+                                    <p class="text-muted text-start" style="font-size: 1rem">
+                                        @item.Description
+                                    </p>
+                                    <p class="h6 text-start">@item.Price</p>
+                                </figure>
+                            </div>
+                            @if (@item.Image != null)
+                            {
+                                <div>
+                                    <img src="@item.Image"
+                                         alt="@item.Name"
+                                         class="rounded float-end"
+                                         style="width: 75px; height: 75px" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </button>
+            }
+        </div>
+    </div>
 
 }
 
