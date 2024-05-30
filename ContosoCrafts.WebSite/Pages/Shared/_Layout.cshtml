@@ -82,8 +82,10 @@
                     <p class="mb-2">Stay in the Loop</p>
                     <div class="input-group mb-3" style="width: 80%">
                         <input type="text" class="form-control" placeholder="username" aria-label="BobaUsername" aria-describedby="basic-addon2">
-                        <span class="input-group-text" id="basic-addon2">Sign up</span>
-                        <p class="fw-lighter flex-sm-shrink-4 mt-2">This form is protected by reCAPTCHA and the Google Privacy Policy</p>
+                        <a asp-area="" asp-page="/Login">
+                            <span class="input-group-text" id="basic-addon2">Sign up</span>
+                        </a>
+                        <p class="fw-lighter flex-sm-shrink-4 mt-2">This form is not really protected by reCAPTCHA and the Google Privacy Policy</p>
                     </div>
                 </div>
             </div>
