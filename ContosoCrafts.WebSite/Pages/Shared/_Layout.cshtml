@@ -1,5 +1,4 @@
-﻿@using ContosoCrafts.WebSite.Components
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +27,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
                         </li>
                         <li class="nav-item">
@@ -46,10 +42,41 @@
                 </div>
             </div>
         </nav>
-        <nav class="bg-light border-bottom box-shadow mb-3">
+        <nav class="navbar bg-body-tertiary">
             <div class="container">
-                <component type="typeof(CategoryMenu)" render-mode="ServerPrerendered" />
+                <div class="d-flex flex-row w-100">
+                    <div class="flex-grow-3 w-50">
+                        <a class="navbar-brand" asp-area="" asp-page="/Index">
+                            <img 
+                                src="https://f9bf67184ceadeacb238.cdn6.editmysite.com/uploads/b/f9bf67184ceadeacb2386854629fe54dccd476753a001dd31f2c20adeae07681/TKOG_LOGO-05_1607796847.png?width=2400&optimize=medium" 
+                                alt="Bootstrap" 
+                                width="100%" 
+                                height="auto"
+                            >
+                        </a>
+                    </div>
+
+                    <ul class="navbar-nav ml-auto flex-row align-items-center">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Login">LOGIN</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-light" asp-area="" asp-page="/DedicatedIndex">PRODUCTS</a>
+                        </li>
+
+                        <li class="nav-item  mx-2">
+                            <a class="nav-link text-light" asp-area="" asp-page="/DedicatedIndex">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex flex-column my-2">
+                    <p class="fs-6 pb-2">Pickup from 1600 Dexter Avenue North 202</p>
+                    <p class="fs-6">Opens at 10:00am M-F</p>
+                </div>
             </div>
+
         </nav>
     </header>
     <div class="container">
