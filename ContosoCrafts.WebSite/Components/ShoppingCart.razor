@@ -1,4 +1,4 @@
-﻿@*<h3>Component1</h3*@
+﻿
 @using ContosoCrafts.WebSite.Services
 @using ContosoCrafts.WebSite.Models
 @inject JsonFileOrderService OrderService
@@ -54,8 +54,8 @@
                 <p>Pickup: 1600 Dexter Avenue North 202</p>
                 <p>Tomorrow at 12:00 PM</p>
                 <h4>Add a Tip</h4>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(15)">15% $@TipAmount(15)</button>
+                <div type="button" class="btn-group" role="group">
+                    <button class="btn btn-outline-secondary" @onclick="() => SetTip(10)">15% $@TipAmount(15))</button>
                     <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(20)">20% $@TipAmount(20)</button>
                     <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(25)">25% $@TipAmount(25)</button>
                     <button type="button" class="btn btn-outline-secondary">Other</button>
