@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Components.Web
+﻿
+@using Microsoft.AspNetCore.Components.Web
 @using ContosoCrafts.WebSite.Services
 @using ContosoCrafts.WebSite.Models
 @inject JsonFileOrderService OrderService
@@ -71,7 +72,6 @@
     }
 </div>
 
-
 @code {
     private List<Order> cartOrders = new List<Order>();
     private decimal Tip { get; set; } = 0;
@@ -85,7 +85,7 @@
     {
         order.Quantity++;
         OrderService.ProcessOrder("defaultUser", order);
-        StateHasChanged();
+        StateHasChanged(); // Ensure the state is updated
     }
 
     private void DecreaseQuantity(Order order)
@@ -94,7 +94,7 @@
         {
             order.Quantity--;
             OrderService.ProcessOrder("defaultUser", order);
-            StateHasChanged();
+            StateHasChanged(); // Ensure the state is updated
         }
     }
 
@@ -102,27 +102,27 @@
     {
         cartOrders.Remove(order);
         OrderService.ProcessOrder("defaultUser", order);
-        StateHasChanged();
+        StateHasChanged(); // Ensure the state is updated
     }
 
     private void SetTip(int percentage)
     {
         Tip = Subtotal * percentage / 100;
+        StateHasChanged(); // Ensure the state is updated
     }
 
-    private decimal Subtotal => cartOrders.Sum(o => (decimal)o.OrderSubtotal);
+    private decimal Subtotal => cartOrders.Sum(o => decimal.Parse(o.Item.Price.Replace("$", "")) * o.Quantity);
     private decimal Taxes => Subtotal * 0.1m; // Example tax calculation
     private decimal Total => Subtotal + Taxes + Tip;
 
     private decimal TipAmount(int percentage)
     {
         return Subtotal * percentage / 100;
-        StateHasChanged();
     }
 
     private void ProcessOrder()
     {
         // Process the final order checkout logic
+        // For example, navigate to a checkout page or display a confirmation message
     }
 }
-
