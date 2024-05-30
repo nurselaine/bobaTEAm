@@ -16,7 +16,7 @@
     {
         <div class="row">
             <div class="col-md-8">
-                <h4>Your Order (@cartOrders.Count items)</h4>
+                <h4>Your Order (@TotalItems items)</h4>
                 @foreach (var order in cartOrders)
                 {
                     <div class="card mb-3">
@@ -27,7 +27,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">@order.Item.Name</h5>
-                                    <p class="card-text">$@order.Item.Price</p>
+                                    <p class="card-text">@order.Item.Price</p>
                                     <p class="card-text">Size: @order.Size</p>
                                     <p class="card-text">Ice Level: @order.IceLevel</p>
                                     <p class="card-text">Sugar Level: @order.SugarLevel</p>
@@ -56,7 +56,7 @@
                 <p>Tomorrow at 12:00 PM</p>
                 <h4>Add a Tip</h4>
                 <div type="button" class="btn-group" role="group">
-                    <button class="btn btn-outline-secondary" @onclick="() => SetTip(10)">15% $@TipAmount(15)</button>
+                    <button class="btn btn-outline-secondary" @onclick="() => SetTip(15)">15% $@TipAmount(15)</button>
                     <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(20)">20% $@TipAmount(20)</button>
                     <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(25)">25% $@TipAmount(25)</button>
                     <button type="button" class="btn btn-outline-secondary">Other</button>
@@ -73,6 +73,7 @@
 </div>
 
 @code {
+    private int TotalItems => cartOrders.Sum(o => o.Quantity);
     private List<Order> cartOrders = new List<Order>();
     private decimal Tip { get; set; } = 0;
 
@@ -93,7 +94,7 @@
         if (order.Quantity > 1)
         {
             order.Quantity--;
-            OrderService.ProcessOrder("defaultUser", order);
+
             StateHasChanged(); // Ensure the state is updated
         }
     }
@@ -101,7 +102,6 @@
     private void RemoveOrder(Order order)
     {
         cartOrders.Remove(order);
-        OrderService.ProcessOrder("defaultUser", order);
         StateHasChanged(); // Ensure the state is updated
     }
 
