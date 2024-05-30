@@ -28,5 +28,30 @@
             OrderService.ProcessOrder("defaultUser", order);
         }
     }
+
+    private void RemoveOrder(Order order)
+    {
+        cartOrders.Remove(order);
+        OrderService.ProcessOrder("defaultUser", order);
+    }
+
+    private void SetTip(int percentage)
+    {
+        Tip = Subtotal * percentage / 100;
+    }
+
+    private decimal Subtotal => cartOrders.Sum(o => (decimal)o.OrderSubtotal);
+    private decimal Taxes => Subtotal * 0.1m; // Example tax calculation
+    private decimal Total => Subtotal + Taxes + Tip;
+
+    private decimal TipAmount(int percentage)
+    {
+        return Subtotal * percentage / 100;
+    }
+
+    private void ProcessOrder()
+    {
+        // Process the final order checkout logic
+    }
 }
 
