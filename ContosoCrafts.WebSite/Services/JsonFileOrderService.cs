@@ -35,20 +35,28 @@ namespace ContosoCrafts.WebSite.Services
 			}) ?? new List<Order>();
 		}
 
-		public void ProcessOrder(string userId, Order order)
-		{
-			System.Console.WriteLine(order);
-			var orders = GetAllOrders().ToList();
-			orders.Add(order);
+        public void ProcessOrder(string userId, Order order)
+        {
+            var orders = GetAllOrders().ToList();
+            var existingOrder = orders.FirstOrDefault(o => o.Item.Name == order.Item.Name);
 
-			using var outputStream = File.Create(orderFilename);
-			var writerOptions = new JsonWriterOptions
-			{
-				SkipValidation = true,
-				Indented = true,
-			};
-			using var writer = new Utf8JsonWriter(outputStream, writerOptions);
-			JsonSerializer.Serialize(writer, orders);
-		}
-	}
+            if (existingOrder != null)
+            {
+                existingOrder.Quantity = order.Quantity;
+            }
+            else
+            {
+                orders.Add(order);
+            }
+
+            using var outputStream = File.Create(orderFilename);
+            var writerOptions = new JsonWriterOptions
+            {
+                SkipValidation = true,
+                Indented = true,
+            };
+            using var writer = new Utf8JsonWriter(outputStream, writerOptions);
+            JsonSerializer.Serialize(writer, orders);
+        }
+    }
 }
