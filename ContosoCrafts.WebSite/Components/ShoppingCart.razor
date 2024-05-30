@@ -1,6 +1,32 @@
-﻿<h3>Component1</h3>
+﻿@*<h3>Component1</h3*@
+@using ContosoCrafts.WebSite.Services
+@using ContosoCrafts.WebSite.Models
+@inject JsonFileOrderService OrderService
+
+
 
 @code {
+    private List<Order> cartOrders = new List<Order>();
+    private decimal Tip { get; set; } = 0;
 
+    protected override void OnInitialized()
+    {
+        cartOrders = OrderService.GetAllOrders().ToList();
+    }
+
+    private void IncreaseQuantity(Order order)
+    {
+        order.Quantity++;
+        OrderService.ProcessOrder("defaultUser", order);
+    }
+
+    private void DecreaseQuantity(Order order)
+    {
+        if (order.Quantity > 1)
+        {
+            order.Quantity--;
+            OrderService.ProcessOrder("defaultUser", order);
+        }
+    }
 }
 
