@@ -20,12 +20,12 @@
                         @onclick="(e => SelectProduct(item?.Name ?? string.Empty))"
                         style="background: none; border: none; padding: 0">
                     <div class="card m-2"
-                         style="width: 425px; height: 155px; padding: 20px">
+                         style="width: 26rem; height: 155px; padding: 20px">
                         <div class="d-flex flex-row align-items-center justify-content-between my-auto">
                             <div class="flex-grow-1 text-start " style="text-align: start">
                                 <figure class="pr-2">
                                     <p class="h5 text-start">@item.Name</p>
-                                    <p class="text-muted text-start text-truncate pb-2" style="font-size: 1rem; max-width: 300px;">
+                                    <p class="text-muted text-start text-truncate pb-2" style="font-size: 1rem; max-width: 18rem;">
                                         @item.Description
                                     </p>
                                     <p class="h6 text-start">@item.Price</p>
@@ -37,7 +37,7 @@
                                     <img src="@item.Image"
                                          alt="@item.Name"
                                          class="rounded float-end"
-                                         style="width: 75px; height: 75px" />
+                                         style="width: 4.5rem; height: 4.5rem" />
                                 </div>
                             }
                         </div>
@@ -98,7 +98,7 @@
 	
 							<div class="d-flex justify-content-start flex-column w-100" >
 								<p class="h6 text-start mt-1">Size</p>
-									<select class="form-select" aria-label="select size" @bind="SelectedSize" required>
+									<select class="form-select form-select-lg mb-3" aria-label="select size" @bind="SelectedSize" required>
 									<option selected>Select one</option>
 										@for (int i = 0; i < @Sizes.Count; i++)
 									{
@@ -106,7 +106,7 @@
 									}
 									</select>
 								<p class="h6 text-start mt-1">Ice Level</p>
-								<select class="form-select" aria-label="select Ice level" @bind="SelectedIceLevel" required>
+									<select class="form-select form-select-lg mb-3" aria-label="select Ice level" @bind="SelectedIceLevel" required>
 											<option selected>Select one</option>
 											@for (int i = 0; i < @IceLevel.Count; i++)
 											{
@@ -114,7 +114,7 @@
 											}
 										</select>
 								<p class="h6 text-start mt-1">Sugar Level</p>
-								<select class="form-select" aria-label="select sugar level" @bind="SelectedSugarLevel" required>
+									<select class="form-select form-select-lg mb-3" aria-label="select sugar level" @bind="SelectedSugarLevel" required>
 											<option selected>Select one</option>
 											@for (int i = 0; i < @SugarLevel.Count; i++)
 											{

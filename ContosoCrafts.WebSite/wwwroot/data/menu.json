@@ -106,7 +106,7 @@
     "Id": "9",
     "Name": "JUST TEA Rose",
     "Description": "floral rose tea",
-    "image": "https://dummyimage.com/160x160/e89ce5/919191",
+    "image": "https://cdn-icons-png.flaticon.com/512/2794/2794534.png",
     "Price": "$4.50",
     "Category": "Just Tea",
     "Ratings": [
@@ -455,7 +455,7 @@
     "Id": "46",
     "Name": "Grape Crush",
     "Description": "fresh grapes ice blended \u002B tea",
-    "image": "https://dummyimage.com/160x160/e89ce5/919191",
+    "image": "https://cdn-icons-png.flaticon.com/512/2794/2794534.png",
     "Price": "$6.75",
     "Category": "Ice Blended",
     "Ratings": null
@@ -491,7 +491,7 @@
     "Id": "50",
     "Name": "Pineapple Coco Sago",
     "Description": "fresh pineapples ice blended \u002B coconut milk \u002B sago topping",
-    "image": "https://dummyimage.com/160x160/e89ce5/919191",
+    "image": "https://cdn-icons-png.flaticon.com/512/2794/2794534.png",
     "Price": "$7.75",
     "Category": "Ice Blended",
     "Ratings": null
@@ -572,7 +572,7 @@
     "Id": "59",
     "Name": "JUST TEA Rose",
     "Description": "floral rose tea",
-    "image": "https://dummyimage.com/160x160/e89ce5/919191",
+    "image": "https://cdn-icons-png.flaticon.com/512/2794/2794534.png",
     "Price": "$4.50",
     "Category": "More",
     "Ratings": null
