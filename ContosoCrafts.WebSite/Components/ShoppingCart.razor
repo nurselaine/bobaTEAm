@@ -55,7 +55,7 @@
                 <p>Tomorrow at 12:00 PM</p>
                 <h4>Add a Tip</h4>
                 <div type="button" class="btn-group" role="group">
-                    <button class="btn btn-outline-secondary" @onclick="() => SetTip(10)">15% $@TipAmount(15))</button>
+                    <button class="btn btn-outline-secondary" @onclick="() => SetTip(10)">15% $@TipAmount(15)</button>
                     <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(20)">20% $@TipAmount(20)</button>
                     <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(25)">25% $@TipAmount(25)</button>
                     <button type="button" class="btn btn-outline-secondary">Other</button>
@@ -85,6 +85,7 @@
     {
         order.Quantity++;
         OrderService.ProcessOrder("defaultUser", order);
+        StateHasChanged();
     }
 
     private void DecreaseQuantity(Order order)
@@ -93,6 +94,7 @@
         {
             order.Quantity--;
             OrderService.ProcessOrder("defaultUser", order);
+            StateHasChanged();
         }
     }
 
@@ -100,6 +102,7 @@
     {
         cartOrders.Remove(order);
         OrderService.ProcessOrder("defaultUser", order);
+        StateHasChanged();
     }
 
     private void SetTip(int percentage)
@@ -114,6 +117,7 @@
     private decimal TipAmount(int percentage)
     {
         return Subtotal * percentage / 100;
+        StateHasChanged();
     }
 
     private void ProcessOrder()
