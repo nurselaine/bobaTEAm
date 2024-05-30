@@ -29,8 +29,9 @@ namespace ContosoCrafts.WebSite.Models
 		public string? SugarLevel {  get; set; }
 		public double OrderTotal { get; set; }
 		public double OrderSubtotal { get; set; }
+        public int Quantity { get; set; } = 0;
 
-		public double CalculateOrderSubtotal()
+        public double CalculateOrderSubtotal()
 		{
 			
 			double total = 0.0;
