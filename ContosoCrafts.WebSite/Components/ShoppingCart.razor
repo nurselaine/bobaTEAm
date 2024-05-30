@@ -3,6 +3,73 @@
 @using ContosoCrafts.WebSite.Models
 @inject JsonFileOrderService OrderService
 
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your cart</h2>
+    @if (cartOrders.Count == 0)
+    {
+        <div class="text-center">
+            <h3>Your cart is empty</h3>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Your Order (@cartOrders.Count items)</h4>
+                @foreach (var order in cartOrders)
+                {
+                    <div class="card mb-3">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="@order.Item.Image" class="card-img" alt="@order.Item.Name">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@order.Item.Name</h5>
+                                    <p class="card-text">$@order.Item.Price</p>
+                                    <p class="card-text">Size: @order.Size</p>
+                                    <p class="card-text">Ice Level: @order.IceLevel</p>
+                                    <p class="card-text">Sugar Level: @order.SugarLevel</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" @onclick="() => DecreaseQuantity(order)">-</button>
+                                        </div>
+                                        <input type="text" class="form-control text-center" value="@order.Quantity" readonly>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" @onclick="() => IncreaseQuantity(order)">+</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-danger" @onclick="() => RemoveOrder(order)">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-4">
+                <h4>How to Get It</h4>
+                <div class="alert alert-info">
+                    <strong>Please note, your order will be ready on our next business day: Tomorrow at 12:00 PM.</strong>
+                </div>
+                <p>Pickup: 1600 Dexter Avenue North 202</p>
+                <p>Tomorrow at 12:00 PM</p>
+                <h4>Add a Tip</h4>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(15)">15% $@TipAmount(15)</button>
+                    <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(20)">20% $@TipAmount(20)</button>
+                    <button type="button" class="btn btn-outline-secondary" @onclick="() => SetTip(25)">25% $@TipAmount(25)</button>
+                    <button type="button" class="btn btn-outline-secondary">Other</button>
+                </div>
+                <h4 class="mt-4">Order Summary</h4>
+                <p>Subtotal: $@Subtotal</p>
+                <p>Estimated taxes: $@Taxes</p>
+                <p>Tip: $@Tip</p>
+                <h5>Total: $@Total</h5>
+                <button class="btn btn-primary btn-block mt-3" @onclick="ProcessOrder">Proceed to Checkout</button>
+            </div>
+        </div>
+    }
+</div>
 
 
 @code {
