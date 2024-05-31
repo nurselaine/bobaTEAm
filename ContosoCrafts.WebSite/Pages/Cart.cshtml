@@ -1,0 +1,10 @@
+﻿@page
+
+@model ContosoCrafts.WebSite.Pages.CartModel
+@using ContosoCrafts.WebSite.Components
+@{
+    ViewData["Title"] = "Checkout page";
+}
+
+@(await Html.RenderComponentAsync<ShoppingCart>(RenderMode.ServerPrerendered))
+<script src="_framework/blazor.server.js"></script>
