@@ -28,6 +28,7 @@ namespace ContosoCrafts.WebSite
             services.AddTransient<JsonFileProductService>();
             services.AddTransient<JsonFileMenuServices>();
             services.AddTransient<JsonFileOrderService>();
+            services.AddSingleton<JsonFileCategoryService>();
             services.AddTransient<JsonFileReviewService>();
         }
 
