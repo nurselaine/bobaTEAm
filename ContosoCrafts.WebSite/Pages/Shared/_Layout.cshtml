@@ -1,5 +1,4 @@
-﻿@using ContosoCrafts.WebSite.Components
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,49 +17,78 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-navbar border-bottom box-shadow mb-3">
+        <nav class="navbar bg-body-tertiary">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Contoso Crafts</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                <div class="d-flex flex-row w-100">
+                    <div class="flex-grow-3 w-50">
+                        <a class="navbar-brand" asp-area="" asp-page="/Index">
+                            <img 
+                                src="https://f9bf67184ceadeacb238.cdn6.editmysite.com/uploads/b/f9bf67184ceadeacb2386854629fe54dccd476753a001dd31f2c20adeae07681/TKOG_LOGO-05_1607796847.png?width=2400&optimize=medium" 
+                                alt="Bootstrap" 
+                                width="100%" 
+                                height="auto"
+                            >
+                        </a>
+                    </div>
+
+                    <ul class="navbar-nav ml-auto flex-row align-items-center">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Login">LOGIN</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/DedicatedIndex">Products</a>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-light" asp-area="" asp-page="/DedicatedIndex">PRODUCTS</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/DedicatedIndex">
+                        <li class="nav-item  mx-2">
+                            <a class="nav-link text-light" asp-area="" asp-page="/DedicatedIndex">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
+                <div class="d-flex flex-column my-2">
+                    <p class="fs-6 pb-2">Pickup from 1600 Dexter Avenue North 202</p>
+                    <p class="fs-6">Opens at 10:00am M-F</p>
+                </div>
             </div>
         </nav>
-        <nav class="bg-light border-bottom box-shadow mb-3">
-            <div class="container">
-                <component type="typeof(CategoryMenu)" render-mode="ServerPrerendered" />
-            </div>
-        </nav>
+        <div class="w-100">
+            <img src="https://f9bf67184ceadeacb238.cdn6.editmysite.com/uploads/b/f9bf67184ceadeacb2386854629fe54dccd476753a001dd31f2c20adeae07681/2023-02-28_23-55-17_1677657344.jpg?width=400&optimize=medium&height=480&fit=cover&dpr=1.5"
+                 width="100%"
+                 height="100%" 
+            />
+        </div>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted bg-footer">
+    <footer>
         <div class="container">
-            &copy; 2022 - ContosoCrafts.WebSite - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <p class="h4 my-5">ALWAYS QUALITY TEA, ALWAYS FRESH FRUITS</p>
+
+            <div class="d-flex flex-row flex-grow-3">
+                <div class="w-70">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">
+                        <img src="https://f9bf67184ceadeacb238.cdn6.editmysite.com/uploads/b/f9bf67184ceadeacb2386854629fe54dccd476753a001dd31f2c20adeae07681/TKOG_LOGO-05_1607796847.png?width=2400&optimize=medium"
+                             alt="Bootstrap"
+                             width="100%"
+                             height="auto">
+                    </a>
+                </div>
+                <div class="d-flex flex-column text-align-left ml-5">
+                    <p class="mb-2">Stay in the Loop</p>
+                    <div class="input-group mb-3" style="width: 80%">
+                        <input type="text" class="form-control" placeholder="username" aria-label="BobaUsername" aria-describedby="basic-addon2">
+                        <a asp-area="" asp-page="/Login">
+                            <span class="input-group-text" id="basic-addon2">Sign up</span>
+                        </a>
+                        <p class="fw-lighter flex-sm-shrink-4 mt-2">This form is not really protected by reCAPTCHA and the Google Privacy Policy</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 

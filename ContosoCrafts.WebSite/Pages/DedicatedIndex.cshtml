@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index page";
 }
 
-<a href="./Create">&nbsp;&nbsp;&nbsp;+ Create</a>
+<button class="btn btn-light my-2"><a href="./Create">CREATE +</a></button>
 
 @(await Html.RenderComponentAsync<ProductIndex>(RenderMode.ServerPrerendered))
 <script src="_framework/blazor.server.js"></script>

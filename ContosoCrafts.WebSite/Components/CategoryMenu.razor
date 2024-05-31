@@ -1,11 +1,13 @@
 ﻿@using ContosoCrafts.WebSite.Services
 @inject JsonFileMenuServices MenuService
 
-<nav style="display: flex; flex-wrap: wrap; gap: 10px;">
+<nav class="d-flex flex-row overflow-auto my-3">
 
     @foreach (var category in MenuService.GetCategories())
     {
-        <a href="#@category.CategoryName.ToLower().Replace(" ", "-")" style="margin-right: 10px;">@category.CategoryName</a>
+        <a href="#@category.CategoryName?.ToLower().Replace(" ", "-")" class="text-light mx-2 py-2">
+            <p class="text-nowrap">@category.CategoryName</p>
+        </a>
     }
 
 </nav>
