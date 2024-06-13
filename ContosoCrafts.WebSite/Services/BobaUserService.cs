@@ -4,6 +4,10 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Hosting;
 using ContosoCrafts.WebSite.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http;
+using System.Collections.Specialized;
+using Microsoft.Net.Http.Headers;
 
 namespace ContosoCrafts.WebSite.Services
 {
@@ -49,6 +53,26 @@ namespace ContosoCrafts.WebSite.Services
                 }),
                 bobaUsers
             );
+        }
+
+        public void Login(BobaUser bobaUser)
+        {
+            List<BobaUser> UserList = LoadUsers();
+            UserList.ForEach(user =>
+            {
+                if (user.UserId == bobaUser.UserId)
+                {
+                    user.IsLoggedIn = true;
+                }
+            });
+
+            // save new data in Json file
+            SaveData(UserList);
+        }
+
+        public void Logout(BobaUser bobaUser)
+        {
+
         }
     }
 }

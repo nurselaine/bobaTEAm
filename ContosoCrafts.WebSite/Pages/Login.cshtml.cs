@@ -4,6 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Hosting;
 using ContosoCrafts.WebSite.Services;
+using Microsoft.AspNetCore.Http;
+using ContosoCrafts.WebSite.Models;
+using Microsoft.Net.Http.Headers;
+using System.Collections.Specialized;
+using System.Net.Http;
+using System;
 
 public class LoginModel : PageModel
 {
@@ -41,6 +47,13 @@ public class LoginModel : PageModel
 
         if (user != null && user.VerifyPassword(Password))
         {
+            bobaUserService.Login(user);
+            var cookieOptions = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(1)
+            };
+
+            Response.Cookies.Append("session", user.UserId);
             return RedirectToPage("/Index");
         }
         else

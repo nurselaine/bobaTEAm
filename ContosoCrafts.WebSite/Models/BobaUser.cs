@@ -7,13 +7,16 @@ namespace ContosoCrafts.WebSite.Models
 {
 	public class BobaUser
 	{
-        public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? UserId { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
         public DateTime JoinedAt { get; set; }
-        public string Username { get; set; }
-        public string PasswordHash { get; set; }
-        public string ProfilePictureUrl { get; set; }
+        public string? Username { get; set; }
+        public string? PasswordHash { get; set; }
+        public string? ProfilePictureUrl { get; set; }
+        public Boolean? IsAdmin { get; set; }
+
+        public Boolean? IsLoggedIn { get; set; }
 
         public override string ToString() => JsonSerializer.Serialize<BobaUser>(this);
         

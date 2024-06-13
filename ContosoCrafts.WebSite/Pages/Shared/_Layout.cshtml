@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body onload="checkCookie()">
     <header>
         <nav class="navbar bg-body-tertiary">
             <div class="container">
@@ -35,7 +35,7 @@
                         <li class="nav-item mx-2">
                             <a class="nav-link text-light" asp-area="" asp-page="/Login">LOGIN</a>
                         </li>
-                        <li class="nav-item mx-2">
+                        <li id="logged-in-nav-item" class="nav-item mx-2" style="display: none">
                             <a class="nav-link text-light" asp-area="" asp-page="/DedicatedIndex">PRODUCTS</a>
                         </li>
 
@@ -107,8 +107,32 @@
                     });
                 });
             });
-        });</script>
+        });
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++){
+                let c = ca[i];
+                while(c.charAt(0) == ' '){
+                    c = c.substring(1);
+                }
+                if(c.indexOf(name) == 0){
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return '';
+        }
+        function checkCookie(){
+            let session = getCookie("session");
+            if(session != ""){
+                document.getElementById("logged-in-nav-item").style.display = "block";
+            }
+        }
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+

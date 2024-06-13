@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Hosting;
 using System.Collections.Generic;
 
 using ContosoCrafts.WebSite.Models;
@@ -11,6 +10,7 @@ using ContosoCrafts.WebSite.Services;
 public class RegisterModel : PageModel
 {
     public BobaUserService UserService { get; }
+    public LoginModel LoginModel { get; }
     public List<BobaUser> Users { get; set; }
     public BobaUser User { get; set; }
 
@@ -53,7 +53,8 @@ public class RegisterModel : PageModel
             FirstName = FirstName,
             LastName = LastName,
             JoinedAt = DateTime.Now,
-            ProfilePictureUrl = ProfilePictureUrl ?? ""
+            ProfilePictureUrl = ProfilePictureUrl ?? "",
+            IsAdmin = false
         };
         // Users = bobaUserService.LoadUsers();
     }
@@ -72,7 +73,9 @@ public class RegisterModel : PageModel
             FirstName = FirstName,
             LastName = LastName,
             JoinedAt = DateTime.Now,
-            ProfilePictureUrl = ProfilePictureUrl ?? ""
+            ProfilePictureUrl = ProfilePictureUrl ?? "",
+            IsAdmin= true,
+            IsLoggedIn = false
         };
         User.HashPassword(Password);
 
