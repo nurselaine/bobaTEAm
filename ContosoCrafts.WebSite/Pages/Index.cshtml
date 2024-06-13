@@ -5,6 +5,5 @@
     ViewData["Title"] = "Home page";
 }
 
-@(await Html.RenderComponentAsync<CategoryMenu>(RenderMode.ServerPrerendered))
 @(await Html.RenderComponentAsync<MenuList>(RenderMode.ServerPrerendered))
 <script src="_framework/blazor.server.js"></script>
