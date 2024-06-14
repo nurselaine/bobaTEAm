@@ -130,6 +130,22 @@
                 document.getElementById("logged-in-nav-item").style.display = "block";
             }
         }
+<<<<<<< Updated upstream
+=======
+
+        function logout() {
+            let SpecialElements = document.getElementsByClassName("isLoggedIn");
+            for (let i = 0; i < SpecialElements.length; i++) {
+                SpecialElements[i].style.display = "none";
+            }
+            document.getElementById("login-cta").style.display = "block";
+            deleteCookie(); 
+        }
+
+        function deleteCookie(){
+            document.cookie = "session" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+>>>>>>> Stashed changes
     </script>
 
     @RenderSection("Scripts", required: false)
