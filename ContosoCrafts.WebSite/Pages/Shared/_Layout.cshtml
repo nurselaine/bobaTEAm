@@ -33,9 +33,12 @@
 
                     <ul class="navbar-nav ml-auto flex-row align-items-center">
                         <li class="nav-item mx-2">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Login">LOGIN</a>
+                            <a id="login-cta" class="nav-link text-light" asp-area="" asp-page="/Login">LOGIN</a>
                         </li>
-                        <li id="logged-in-nav-item" class="nav-item mx-2" style="display: none">
+                        <li>
+                            <a class="nav-link text-light isLoggedIn" onclick="logout()" style="display: none">LOGOUT</a>
+                        </li>
+                        <li class="nav-item isLoggedIn mx-2" style="display: none">
                             <a class="nav-link text-light" asp-area="" asp-page="/DedicatedIndex">PRODUCTS</a>
                         </li>
 
@@ -127,8 +130,25 @@
         function checkCookie(){
             let session = getCookie("session");
             if(session != ""){
-                document.getElementById("logged-in-nav-item").style.display = "block";
+                let SpecialElements = document.getElementsByClassName("isLoggedIn");
+                for (let i = 0; i < SpecialElements.length; i++){
+                    SpecialElements[i].style.display = "block";
+                }
+                document.getElementById("login-cta").style.display = "none";
             }
+        }
+
+        function logout() {
+            let SpecialElements = document.getElementsByClassName("isLoggedIn");
+            for (let i = 0; i < SpecialElements.length; i++) {
+                SpecialElements[i].style.display = "none";
+            }
+            document.getElementById("login-cta").style.display = "block";
+            deleteCookie();
+        }
+
+        function deleteCookie(){
+            document.cookie = "session" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
     </script>
 
