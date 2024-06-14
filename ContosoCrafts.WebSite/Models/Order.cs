@@ -31,7 +31,7 @@ namespace ContosoCrafts.WebSite.Models
 		public double OrderSubtotal { get; set; }
 		public int Quantity { get; set; }
 
-		public double CalculateOrderSubtotal()
+        public double CalculateOrderSubtotal()
 		{
 			
 			double total = 0.0;
