@@ -3,7 +3,7 @@
     "UserId": "153f345f-b049-4c3d-a564-359d2693de40",
     "FirstName": "el",
     "LastName": "h",
-    "JoinedAt": "2024-06-13T10:54:34.5114722-07:00",
+    "JoinedAt": "2024-06-14T01:54:34.5114722+08:00",
     "Username": "elaineh",
     "PasswordHash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
     "ProfilePictureUrl": "",
@@ -14,11 +14,22 @@
     "UserId": "7a143cc2-779e-47a5-90cf-9f5ec9d7d936",
     "FirstName": "pp",
     "LastName": "n",
-    "JoinedAt": "2024-06-13T10:55:35.4283066-07:00",
+    "JoinedAt": "2024-06-14T01:55:35.4283066+08:00",
     "Username": "ppnuts",
     "PasswordHash": "96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e",
     "ProfilePictureUrl": "",
     "IsAdmin": false,
     "IsLoggedIn": false
+  },
+  {
+    "UserId": "7e818691-1354-4658-89bb-97a06958dfeb",
+    "FirstName": "J",
+    "LastName": "Z",
+    "JoinedAt": "2024-07-10T10:50:04.944512+08:00",
+    "Username": "JunwenZ",
+    "PasswordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "ProfilePictureUrl": "https://www.google.com.hk/imgres?q=boba%27\u0026imgurl=https%3A%2F%2Ffood.fnr.sndimg.com%2Fcontent%2Fdam%2Fimages%2Ffood%2Ffullset%2F2023%2F6%2F13%2Fboba-milk-tea.jpg.rend.hgtvcom.1280.1280.suffix%2F1686684207354.jpeg\u0026imgrefurl=https%3A%2F%2Fwww.foodnetwork.com%2Fhow-to%2Fpackages%2Ffood-network-essentials%2Fwhat-is-boba\u0026docid=307Cu5ycHxyfdM\u0026tbnid=tGOFGpsnov0JoM\u0026vet=12ahUKEwjz_PyZu5uHAxV-EEQIHcBtC04QM3oECHMQAA..i\u0026w=1280\u0026h=1280\u0026hcb=2\u0026ved=2ahUKEwjz_PyZu5uHAxV-EEQIHcBtC04QM3oECHMQAA",
+    "IsAdmin": true,
+    "IsLoggedIn": true
   }
 ]

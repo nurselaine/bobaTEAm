@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections;
 using System.Text.Json;
 
@@ -30,6 +31,15 @@ namespace ContosoCrafts.WebSite
             services.AddTransient<JsonFileOrderService>();
             services.AddTransient<JsonFileReviewService>();
             services.AddTransient<BobaUserService>();
+
+            // Add session services
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +60,8 @@ namespace ContosoCrafts.WebSite
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
