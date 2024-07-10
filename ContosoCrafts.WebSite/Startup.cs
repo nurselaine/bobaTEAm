@@ -40,6 +40,12 @@ namespace ContosoCrafts.WebSite
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+
+            // Register IHttpContextAccessor
+            services.AddHttpContextAccessor();
+
+            // Add logging
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

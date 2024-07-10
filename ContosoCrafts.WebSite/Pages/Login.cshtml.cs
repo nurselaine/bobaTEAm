@@ -54,6 +54,9 @@ public class LoginModel : PageModel
             };
 
             Response.Cookies.Append("session", user.UserId);
+
+            HttpContext.Session.SetString("Username", user.Username);
+
             return RedirectToPage("/Index");
         }
         else
